@@ -6,10 +6,8 @@ import com.example.nearby.domain.PublicTransport;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 public class NearByDBAdapter {
@@ -31,8 +29,8 @@ public class NearByDBAdapter {
 	
 	private static final String DATABASE_NAME = "nearByData";
 	private static final String TABLE_PUBLIC_TRANSPORTS = "public_transports";
-	private static final String TABLE_INTEREST_POINTS = "interest_points";
-	private static final String TABLE_RESTAURANTS = "restaurants";
+	//private static final String TABLE_INTEREST_POINTS = "interest_points";
+	//private static final String TABLE_RESTAURANTS = "restaurants";
 	private static final int DATABASE_VERSION = 1;
 	private final Context mCtx;
 	
@@ -98,5 +96,6 @@ public class NearByDBAdapter {
 		cursor.close();
 		
 		return publicTransports;	
-	}	
+	}
+	
 }
