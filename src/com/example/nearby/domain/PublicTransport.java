@@ -6,13 +6,15 @@ public class PublicTransport {
 	
 	private String company;
 	private String type;
-	private int price;
-	private ArrayList<String> horarios;
+	private float price;
+	private int identifier;
+	private ArrayList<String> schedules;
 	
 	public PublicTransport() {}
 	
-	public PublicTransport(String company, String type, int price, ArrayList<String> horarios) {
+	public PublicTransport(String company, String type, int identifier,int price, ArrayList<String> horarios) {
 		this.company = company;
+		this.identifier = identifier;
 		this.type = type;
 		this.price = price;
 		this.horarios = horarios;	
