@@ -6,20 +6,19 @@ public class InterestPoint {
 	private String name;
 	private String description;
 	private float price;
-	private ArrayList<String> schedules;
+	private String schedule;
 	private int numberOfVotes;
 	private float rating;
 	
 	public InterestPoint(){}
 	
-	public InterestPoint(String name, String description, float price, ArrayList<String> schedules){
+	public InterestPoint(String name, String description, float price, String schedule, float rating, int numberOfVotes){
 		this.name = name;
 		this.description = description;
 		this.price = price;
-		this.schedules = schedules;
-		this.rating = 0;
-		this.numberOfVotes = 0;
-		
+		this.schedule = schedule;
+		this.rating = rating;
+		this.numberOfVotes = numberOfVotes;
 	}
 
 	public String getName() {
@@ -46,12 +45,12 @@ public class InterestPoint {
 		this.price = price;
 	}
 
-	public ArrayList<String> getSchedules() {
-		return schedules;
+	public String getSchedules() {
+		return schedule;
 	}
 
-	public void setSchedules(ArrayList<String> schedules) {
-		this.schedules = schedules;
+	public void setSchedules(String schedule) {
+		this.schedule = schedule;
 	}
 
 	public int getNumberOfVotes() {
@@ -69,7 +68,4 @@ public class InterestPoint {
 	public void setRating(float rating) {
 		this.rating = rating;
 	}
-	
-	
-	
 }
