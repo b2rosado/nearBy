@@ -1,0 +1,86 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".RestaurantsFilterActivity"
+    android:background="@android:color/black" >
+
+	<RelativeLayout
+        android:layout_width="@dimen/screen_size"
+        android:layout_height="@dimen/screen_size"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@android:color/white">
+
+        <RelativeLayout
+            android:id="@+id/statusbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/statusbar_height"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/azul_ist">
+            
+            <TextView
+                android:id="@+id/lbl_statusbar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10px"
+                android:layout_centerVertical="true"
+                android:textColor="@android:color/white"
+                android:text="@string/restaurants_filters" />
+        </RelativeLayout>
+        
+        		<RadioGroup
+		    android:id="@+id/radioGroup1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_centerHorizontal="true"
+		    android:layout_centerVertical="true" >
+
+		    <RadioButton
+		        android:id="@+id/radio_alwaysAlert"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="@dimen/double_margin"
+		        android:checked="true"
+		        android:text="@string/alwaysAlert"
+		        android:onClick="changeAlwaysAlertStatus"/>
+
+		    <TextView
+			    android:id="@+id/status_alwaysAlert"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginLeft="50px"
+			    android:layout_below="@id/radio_alwaysAlert"
+			    android:text="@string/sound" />
+		    
+		    <RadioButton
+		        android:id="@+id/radio_onlyPromotions"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="@dimen/double_margin"
+		        android:text="@string/onlyPromotions" 
+		        android:onClick="changeOnlyPromotionStatus"/>
+		    
+		    <TextView
+			    android:id="@+id/status_onlyPromotions"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_marginLeft="50px"
+			    android:layout_below="@id/radio_alwaysAlert"
+			    android:text="@string/vibration" />
+
+		    <RadioButton
+		        android:id="@+id/radio_neverAlert"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="@dimen/double_margin"
+		        android:text="@string/neverAlert" />
+		</RadioGroup>  
+    </RelativeLayout>
+
+</RelativeLayout>
