@@ -35,7 +35,7 @@
         </RelativeLayout>
         
         		<RadioGroup
-		    android:id="@+id/radioGroup1"
+		    android:id="@+id/filter_radioGroup"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
 		    android:layout_centerHorizontal="true"
@@ -49,14 +49,6 @@
 		        android:checked="true"
 		        android:text="@string/alwaysAlert"
 		        android:onClick="changeAlwaysAlertStatus"/>
-
-		    <TextView
-			    android:id="@+id/status_alwaysAlert"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_marginLeft="50px"
-			    android:layout_below="@id/radio_alwaysAlert"
-			    android:text="@string/sound" />
 		    
 		    <RadioButton
 		        android:id="@+id/radio_onlyPromotions"
@@ -65,14 +57,6 @@
 		        android:layout_marginTop="@dimen/double_margin"
 		        android:text="@string/onlyPromotions" 
 		        android:onClick="changeOnlyPromotionStatus"/>
-		    
-		    <TextView
-			    android:id="@+id/status_onlyPromotions"
-			    android:layout_width="wrap_content"
-			    android:layout_height="wrap_content"
-			    android:layout_marginLeft="50px"
-			    android:layout_below="@id/radio_alwaysAlert"
-			    android:text="@string/vibration" />
 
 		    <RadioButton
 		        android:id="@+id/radio_neverAlert"

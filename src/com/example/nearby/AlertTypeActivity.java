@@ -14,14 +14,13 @@ public class AlertTypeActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alert_type);
         RadioGroup rg = (RadioGroup) findViewById(R.id.alertRadioGroup);
+        String alert_type = getIntent().getStringExtra("alert").split("\n")[1];
         
-        System.out.println("extra: "+getIntent().getStringExtra("alert"));
-        
-        if(getIntent().getStringExtra("alert").equals(getResources().getString(R.string.vibration)))
+        if(alert_type.equals(getResources().getString(R.string.vibration)))
         	rg.check(R.id.vibration);
-        else if(getIntent().getStringExtra("alert").equals(getResources().getString(R.string.sound)))
+        else if(alert_type.equals(getResources().getString(R.string.sound)))
         	rg.check(R.id.sound);
-        else if(getIntent().getStringExtra("alert").equals(getResources().getString(R.string.vibration_and_sound)))
+        else if(alert_type.equals(getResources().getString(R.string.vibration_and_sound)))
         	rg.check(R.id.vibration_and_sound);
     }    
     
