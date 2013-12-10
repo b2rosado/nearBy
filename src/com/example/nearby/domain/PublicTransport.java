@@ -17,9 +17,17 @@ public class PublicTransport {
 		this.identifier = identifier;
 		this.type = type;
 		this.price = price;
-		this.horarios = horarios;	
+		this.schedules = horarios;	
 	}
 	
+	public int getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(int identifier) {
+		this.identifier = identifier;
+	}
+
 	public String getCompany() {
 		return company;
 	}
@@ -32,16 +40,16 @@ public class PublicTransport {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getPrice() {
+	public float getPrice() {
 		return price;
 	}
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public ArrayList<String> getHorarios() {
-		return horarios;
+	public ArrayList<String> getSchedules() {
+		return schedules;
 	}
-	public void setHorarios(ArrayList<String> horarios) {
-		this.horarios = horarios;
+	public void setHorarios(ArrayList<String> schedules) {
+		this.schedules = schedules;
 	}
 }
