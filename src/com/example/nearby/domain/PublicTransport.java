@@ -11,6 +11,8 @@ public class PublicTransport {
 	private int identifier;
 	private String schedule;
 	
+	//Constructors
+	
 	public PublicTransport() {}
 	
 	public PublicTransport(String company, String type, float price, int identifier, String schedule) {
@@ -20,6 +22,8 @@ public class PublicTransport {
 		this.identifier = identifier;
 		this.schedule = schedule;	
 	}
+	
+	//Getters and setters
 	
 	public int getIdentifier() {
 		return identifier;
@@ -54,12 +58,18 @@ public class PublicTransport {
 		this.schedule = schedule;
 	}
 	
+	/**
+     * This method converts a Cursor to a PublicTransport object
+     *
+     * @param cursor The cursor
+     * @return PublicTransport object
+     */
 	public static PublicTransport cursorToPublicTransport(Cursor cursor) {
 	
 		if(!cursor.isAfterLast()) {
 			String company = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_COMPANY));
 			String type = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_TYPE));
-			float price = cursor.getFloat(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_PRICE));
+			float price = Float.parseFloat(cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_PRICE)));
 			int identifier = cursor.getInt(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_NUMBER));
 			String schedule = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_SCHEDULE));
 			

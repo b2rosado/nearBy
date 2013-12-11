@@ -1,8 +1,11 @@
 package com.example.nearby.domain;
 
-import java.util.ArrayList;
+import android.database.Cursor;
+
+import com.example.nearby.storage.NearByDBAdapter;
 
 public class InterestPoint {
+	
 	private String name;
 	private String description;
 	private float price;
@@ -10,16 +13,20 @@ public class InterestPoint {
 	private int numberOfVotes;
 	private float rating;
 	
+	//Constructors
+	
 	public InterestPoint(){}
 	
-	public InterestPoint(String name, String description, float price, String schedule, float rating, int numberOfVotes){
+	public InterestPoint(String name, String description, float price, String schedule, int numberOfVotes, float rating){
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.schedule = schedule;
-		this.rating = rating;
 		this.numberOfVotes = numberOfVotes;
+		this.rating = rating;
 	}
+	
+	//Getters and setters
 
 	public String getName() {
 		return name;
@@ -45,11 +52,11 @@ public class InterestPoint {
 		this.price = price;
 	}
 
-	public String getSchedules() {
+	public String getSchedule() {
 		return schedule;
 	}
 
-	public void setSchedules(String schedule) {
+	public void setSchedule(String schedule) {
 		this.schedule = schedule;
 	}
 
@@ -67,5 +74,27 @@ public class InterestPoint {
 
 	public void setRating(float rating) {
 		this.rating = rating;
+	}
+	
+	/**
+     * This method converts a Cursor to a InterestPoint object
+     *
+     * @param cursor The cursor
+     * @return InterestPoint object
+     */
+	public static InterestPoint cursorToInterestPoint(Cursor cursor) {
+		
+		if(!cursor.isAfterLast()) {
+			String name = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_NAME));
+			String description = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_DESCRIPTION));
+			float price = Float.parseFloat(cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_PRICE)));
+			String schedule = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_SCHEDULE));
+			int numberOfVotes = cursor.getInt(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_VOTES));
+			float rating = Float.parseFloat(cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_RATING)));
+					
+			return new InterestPoint(name, description, price, schedule, numberOfVotes, rating);
+		} else {
+			return null;
+		}
 	}
 }

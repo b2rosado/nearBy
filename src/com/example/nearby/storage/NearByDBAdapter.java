@@ -2,49 +2,99 @@ package com.example.nearby.storage;
 
 import java.util.ArrayList;
 
+import com.example.nearby.domain.InterestPoint;
 import com.example.nearby.domain.PublicTransport;
+import com.example.nearby.domain.Restaurant;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 public class NearByDBAdapter {
 
 	public static final String KEY_ID = "_id";
-	
-	//Transports columns
+
+	//Transports table columns
 	public static final String KEY_TRANSPORTS_COMPANY = "company";
 	public static final String KEY_TRANSPORTS_TYPE = "type";
 	public static final String KEY_TRANSPORTS_PRICE = "price";
 	public static final String KEY_TRANSPORTS_NUMBER = "number";
 	public static final String KEY_TRANSPORTS_SCHEDULE = "schedule";
-	
+
+	//Interest Points table columns
+	public static final String KEY_INTEREST_POINTS_NAME = "name";
+	public static final String KEY_INTEREST_POINTS_DESCRIPTION = "description";
+	public static final String KEY_INTEREST_POINTS_PRICE = "price";
+	public static final String KEY_INTEREST_POINTS_SCHEDULE = "schedule";
+	public static final String KEY_INTEREST_POINTS_VOTES = "number_of_votes";
+	public static final String KEY_INTEREST_POINTS_RATING = "rating";
+
+	//Restaurants table columns
+	public static final String KEY_RESTAURANT_NAME = "name";
+	public static final String KEY_RESTAURANT_TYPE = "type";
+	public static final String KEY_RESTAURANT_PRICE = "price";
+	public static final String KEY_RESTAURANT_SCHEDULE = "schedule";
+	public static final String KEY_RESTAURANT_VOTES = "number_of_votes";
+	public static final String KEY_RESTAURANT_RATING = "rating";
+
 	private static final String TAG = "NearByDBAdapter";
 	private DatabaseHelper mDbHelper;
 	private SQLiteDatabase mDb;
-	
+
 	private static NearByDBAdapter mDataBaseInstance = null;
-	
+
+	//Database information
+
 	private static final String DATABASE_NAME = "nearByData";
 	private static final String TABLE_PUBLIC_TRANSPORTS = "public_transports";
-	//private static final String TABLE_INTEREST_POINTS = "interest_points";
-	//private static final String TABLE_RESTAURANTS = "restaurants";
+	private static final String TABLE_INTEREST_POINTS = "interest_points";
+	private static final String TABLE_RESTAURANTS = "restaurants";
 	private static final int DATABASE_VERSION = 1;
 	private final Context mCtx;
-	
+
+	//Table creation SQL Statements
+
 	private static final String CREATE_TABLE_PUBLIC_TRANSPORTS = "CREATE TABLE " + TABLE_PUBLIC_TRANSPORTS + " (" + KEY_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
-			+ KEY_TRANSPORTS_TYPE + " TEXT NOT NULL, " + KEY_TRANSPORTS_PRICE + " REAL NOT NULL, "
-			+ KEY_TRANSPORTS_NUMBER + "INTEGER " + KEY_TRANSPORTS_SCHEDULE + "TEXT NOT NULL);";
-			
-			 
-	private static final String DROP_PUBLIC_TRANSPORTS_TABLE = 
+			+ KEY_TRANSPORTS_COMPANY + " TEXT NOT NULL; " + KEY_TRANSPORTS_TYPE + " TEXT NOT NULL, " + KEY_TRANSPORTS_PRICE + " STRING NOT NULL, "
+			+ KEY_TRANSPORTS_NUMBER + "INTEGER NOT NULL" + KEY_TRANSPORTS_SCHEDULE + "TEXT NOT NULL);";
+
+	private static final String CREATE_TABLE_INTEREST_POINTS = "CREATE TABLE " + TABLE_INTEREST_POINTS + " (" + KEY_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ KEY_INTEREST_POINTS_NAME + " TEXT NOT NULL, " + KEY_INTEREST_POINTS_DESCRIPTION + " TEXT NOT NULL, " + KEY_INTEREST_POINTS_PRICE + " STRING NOT NULL, "
+			+ KEY_INTEREST_POINTS_SCHEDULE + "TEXT NOT NULL, " + KEY_INTEREST_POINTS_VOTES + " INTEGER NOT NULL, " + KEY_INTEREST_POINTS_RATING + "STRING NOT NULL);";
+
+	private static final String CREATE_TABLE_RESTAURANTS = "CREATE TABLE " + TABLE_INTEREST_POINTS + " (" + KEY_ID + "INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ KEY_RESTAURANT_NAME + " TEXT NOT NULL, " + KEY_RESTAURANT_TYPE + " TEXT NOT NULL, " + KEY_RESTAURANT_PRICE + " STRING NOT NULL, "
+			+ KEY_RESTAURANT_SCHEDULE + "TEXT NOT NULL, " + KEY_RESTAURANT_VOTES + " INTEGER NOT NULL, " + KEY_RESTAURANT_RATING + "STRING NOT NULL);";
+
+	//Table insertion SQL Statements
+
+	private static final String TABLE_PUBLIC_TRANSPORTS_INSERT = "INSERT INTO " + TABLE_PUBLIC_TRANSPORTS + " (" + KEY_TRANSPORTS_COMPANY + "," + KEY_TRANSPORTS_TYPE + "," 
+			+ KEY_TRANSPORTS_PRICE + "," + KEY_TRANSPORTS_NUMBER + "," + KEY_TRANSPORTS_SCHEDULE + ") VALUES (?,?,?,?,?)";
+
+	private static final String TABLE_INTEREST_POINTS_INSERT = "INSERT INTO " + TABLE_INTEREST_POINTS + " (" + KEY_INTEREST_POINTS_NAME + "," + KEY_INTEREST_POINTS_DESCRIPTION + "," 
+			+ KEY_INTEREST_POINTS_PRICE + "," + KEY_INTEREST_POINTS_SCHEDULE + "," + KEY_INTEREST_POINTS_VOTES + "," + KEY_INTEREST_POINTS_RATING + ") VALUES (?,?,?,?,?,?)";
+
+	private static final String TABLE_RESTAURANTS_INSERT = "INSERT INTO " + TABLE_RESTAURANTS + " (" + KEY_RESTAURANT_NAME + "," + KEY_RESTAURANT_TYPE + "," 
+			+ KEY_RESTAURANT_PRICE + "," + KEY_RESTAURANT_SCHEDULE + "," + KEY_RESTAURANT_VOTES + "," + KEY_RESTAURANT_RATING + ") VALUES (?,?,?,?,?,?)";
+
+
+	//Table deletion SQL Statements
+
+	private static final String DROP_TABLE_PUBLIC_TRANSPORTS = 
 			"DROP TABLE IF EXISTS " + TABLE_PUBLIC_TRANSPORTS;
-	
-	
+
+	private static final String DROP_TABLE_INTEREST_POINTS = 
+			"DROP TABLE IF EXISTS " + TABLE_INTEREST_POINTS;
+
+	private static final String DROP_TABLE_RESTAURANTS = 
+			"DROP TABLE IF EXISTS " + TABLE_RESTAURANTS;
+
 	private static class DatabaseHelper extends SQLiteOpenHelper {
-		
+
 		public DatabaseHelper(Context context) {
 			super(context, DATABASE_NAME, null, DATABASE_VERSION);
 		}
@@ -52,50 +102,236 @@ public class NearByDBAdapter {
 		@Override
 		public void onCreate(SQLiteDatabase db) {
 			db.execSQL(CREATE_TABLE_PUBLIC_TRANSPORTS);
-			//TODO: Create the remaining tables here
+			db.execSQL(CREATE_TABLE_INTEREST_POINTS);
+			db.execSQL(CREATE_TABLE_RESTAURANTS);
 		}
 
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-			 Log.w(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
-	            db.execSQL(DROP_PUBLIC_TRANSPORTS_TABLE);
-	            //TODO: Drop the remaining tables here
-	            onCreate(db);
+			Log.w(TAG, "Upgrading database from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
+			db.execSQL(DROP_TABLE_PUBLIC_TRANSPORTS);
+			db.execSQL(DROP_TABLE_INTEREST_POINTS);
+			db.execSQL(DROP_TABLE_RESTAURANTS);
+			onCreate(db);
 		}	
 	}
-	
+
 	public NearByDBAdapter(Context ctx) {
 		this.mCtx = ctx;
 		mDbHelper = new DatabaseHelper(mCtx.getApplicationContext());
 		mDb = mDbHelper.getWritableDatabase();
 	}
-	
+
 	public void close() {
-        mDataBaseInstance = null;
-        mDb.close();
-        mDbHelper.close();
-    }
-	
+		mDataBaseInstance = null;
+		mDb.close();
+		mDbHelper.close();
+	}
+
+	//Database singleton
 	public synchronized static NearByDBAdapter getInstance(Context ctx) {
 		if(mDataBaseInstance == null) {
 			mDataBaseInstance = new NearByDBAdapter(ctx);
 		}
 		return mDataBaseInstance;
 	}
-	
+
+	// ************************************************************************* //	
+
+	/**
+	 * This updates the public_transports table content
+	 *
+	 * @param publicTransports An array list with PublicTransports
+	 * @return long The array list given as input size or -1 in case of an error
+	 */
+	public long updateTransports(ArrayList<PublicTransport> publicTransports) {
+
+		//Recreates the table every time we update it
+		mDb.execSQL(DROP_TABLE_PUBLIC_TRANSPORTS);
+		mDb.execSQL(CREATE_TABLE_PUBLIC_TRANSPORTS);
+
+		String sql = TABLE_PUBLIC_TRANSPORTS_INSERT;
+		SQLiteStatement stmt = mDb.compileStatement(sql);
+
+		mDb.beginTransaction();
+		try {
+
+			for (PublicTransport publicTransport : publicTransports) {
+
+				stmt.bindString(1, publicTransport.getCompany());
+				stmt.bindString(2, publicTransport.getType());
+				stmt.bindString(3, Float.toString(publicTransport.getPrice()));
+				stmt.bindLong(4, publicTransport.getIdentifier());
+				stmt.bindString(5, publicTransport.getSchedule());
+
+				if(stmt.executeInsert() == -1) {
+					stmt.clearBindings();
+					mDb.endTransaction();
+					return -1;
+				} else {
+					stmt.clearBindings();
+				}
+			}
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			return -1;
+		} catch (NullPointerException e) {
+			System.err.println(e.getMessage());
+			return -1;
+		} finally {
+			mDb.endTransaction();
+		}
+		return publicTransports.size();
+	}
+
+	/*
+	 *  fetchTransports: This method obtains all the available transports at the public_transports table
+	 */
 	public ArrayList<PublicTransport> fetchTransports() {
-		
+
 		ArrayList<PublicTransport> publicTransports = new ArrayList<PublicTransport>();
-		
+
 		Cursor cursor = mDb.rawQuery("SELECT * FROM " + TABLE_PUBLIC_TRANSPORTS, null);
-		
+
 		while(cursor.moveToNext()) {
 			PublicTransport publicTransport = PublicTransport.cursorToPublicTransport(cursor);
 			publicTransports.add(publicTransport);
 		}
 		cursor.close();
-		
+
 		return publicTransports;	
 	}
-	
+
+	/**
+	 * This updates the interest_points table content
+	 *
+	 * @param interestPoints An array list with interestPoints
+	 * @return long The array list given as input size or -1 in case of an error
+	 */
+	public long updateInterestPoints(ArrayList<InterestPoint> interestPoints) {
+
+		//Recreates the table every time we update it
+		mDb.execSQL(DROP_TABLE_INTEREST_POINTS);
+		mDb.execSQL(CREATE_TABLE_INTEREST_POINTS);
+
+		String sql = TABLE_INTEREST_POINTS_INSERT;
+		SQLiteStatement stmt = mDb.compileStatement(sql);
+
+		mDb.beginTransaction();
+		try {
+
+			for (InterestPoint interestPoint : interestPoints) {
+
+				stmt.bindString(1, interestPoint.getName());
+				stmt.bindString(2, interestPoint.getDescription());
+				stmt.bindString(3, Float.toString(interestPoint.getPrice()));
+				stmt.bindString(4, interestPoint.getSchedule());
+				stmt.bindLong(5, interestPoint.getNumberOfVotes());
+				stmt.bindString(6, Float.toString(interestPoint.getRating()));
+
+				if(stmt.executeInsert() == -1) {
+					stmt.clearBindings();
+					mDb.endTransaction();
+					return -1;
+				} else {
+					stmt.clearBindings();
+				}
+			}
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			return -1;
+		} catch (NullPointerException e) {
+			System.err.println(e.getMessage());
+			return -1;
+		} finally {
+			mDb.endTransaction();
+		}
+		return interestPoints.size();
+	}
+
+	/*
+	 *  fetchInterestPoints: This method obtains all the available interest points at the interest_points table
+	 */
+	public ArrayList<InterestPoint> fetchInterestPoints() {
+
+		ArrayList<InterestPoint> interestPoints = new ArrayList<InterestPoint>();
+
+		Cursor cursor = mDb.rawQuery("SELECT * FROM " + TABLE_INTEREST_POINTS, null);
+
+		while(cursor.moveToNext()) {
+			InterestPoint interestPoint = InterestPoint.cursorToInterestPoint(cursor);
+			interestPoints.add(interestPoint);
+		}
+		cursor.close();
+
+		return interestPoints;	
+	}
+
+	/**
+	 * This updates the restaurants table content
+	 *
+	 * @param restaurants An array list with Restaurants
+	 * @return long The array list given as input size or -1 in case of an error
+	 */
+	public long updateRestaurants(ArrayList<Restaurant> restaurants) {
+
+		//Recreates the table every time we update it
+		mDb.execSQL(DROP_TABLE_RESTAURANTS);
+		mDb.execSQL(CREATE_TABLE_RESTAURANTS);
+
+		String sql = TABLE_RESTAURANTS_INSERT;
+		SQLiteStatement stmt = mDb.compileStatement(sql);
+
+		mDb.beginTransaction();
+		try {
+
+			for (Restaurant restaurant : restaurants) {
+
+				stmt.bindString(1, restaurant.getName());
+				stmt.bindString(2, restaurant.getType());
+				stmt.bindString(3, Float.toString(restaurant.getPrice()));
+				stmt.bindString(4, restaurant.getSchedule());
+				stmt.bindLong(5, restaurant.getNumberOfVotes());
+				stmt.bindString(6, Float.toString(restaurant.getRating()));
+
+				if(stmt.executeInsert() == -1) {
+					stmt.clearBindings();
+					mDb.endTransaction();
+					return -1;
+				} else {
+					stmt.clearBindings();
+				}
+			}
+			mDb.setTransactionSuccessful();
+		} catch (SQLException e) {
+			System.err.println(e.getMessage());
+			return -1;
+		} catch (NullPointerException e) {
+			System.err.println(e.getMessage());
+			return -1;
+		} finally {
+			mDb.endTransaction();
+		}
+		return restaurants.size();
+	}
+
+	/*
+	 *  fetchRestaurants: This method obtains all the available restaurants at the restaurants table
+	 */
+	public ArrayList<Restaurant> fetchRestaurants() {
+
+		ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
+
+		Cursor cursor = mDb.rawQuery("SELECT * FROM " + TABLE_RESTAURANTS, null);
+
+		while(cursor.moveToNext()) {
+			Restaurant restaurant = Restaurant.cursorToRestaurant(cursor);
+			restaurants.add(restaurant);
+		}
+		cursor.close();
+
+		return restaurants;	
+	}
 }
