@@ -50,6 +50,14 @@
             android:name="com.example.nearby.RestaurantsFilterActivity"
             android:label="@string/title_activity_restaurants_filter" >
         </activity>
+        <activity
+            android:name="com.example.nearby.AlertTypeActivity"
+            android:label="@string/title_activity_alert_type" >
+        </activity>
+        <activity
+            android:name="com.example.nearby.AboutActivity"
+            android:label="@string/title_activity_about" >
+        </activity>
     </application>
 
 </manifest>

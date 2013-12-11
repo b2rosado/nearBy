@@ -6,11 +6,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".FiltersActivity"
+    tools:context=".AlertTypeActivity"
     android:background="@android:color/black" >
 
 	<RelativeLayout
-	    android:id="@+id/main_screen"
         android:layout_width="@dimen/screen_size"
         android:layout_height="@dimen/screen_size"
         android:layout_centerHorizontal="true"
@@ -32,39 +31,41 @@
                 android:layout_marginLeft="10px"
                 android:layout_centerVertical="true"
                 android:textColor="@android:color/white"
-                android:text="@string/filters" />
+                android:text="@string/alert_type" />
         </RelativeLayout>
         
-        <Button
-            android:id="@+id/btn_filters"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/statusbar"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="40px"
-            android:text="@string/transports"
-            android:background="@drawable/btn_separator"/>
-        
-        <Button
-            android:id="@+id/btn_help"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/btn_filters"
-            android:text="@string/restaurants"
-            android:background="@drawable/btn_separator"
-            android:onClick="openRestaurantsFilter"/>
-        
-        <Button
-            android:id="@+id/btn_"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/btn_help"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/homescreen_btn_margin"
-            android:text="@string/interestPoints"
-			android:background="@android:color/transparent"/>
+        	<RadioGroup
+		    android:id="@+id/alertRadioGroup"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_centerHorizontal="true"
+		    android:layout_centerVertical="true" >
+
+		    <RadioButton
+		        android:id="@+id/vibration"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="@dimen/double_margin"
+		        android:checked="true"
+		        android:text="@string/vibration"
+		        android:onClick="onRadioButtonClick"/>
+		    
+		    <RadioButton
+		        android:id="@+id/sound"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="@dimen/double_margin"
+		        android:text="@string/sound"
+		        android:onClick="onRadioButtonClick"/>
+
+		    <RadioButton
+		        android:id="@+id/vibration_and_sound"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_marginTop="@dimen/double_margin"
+		        android:text="@string/vibration_and_sound"
+		        android:onClick="onRadioButtonClick"/>
+		</RadioGroup>  
     </RelativeLayout>
-    
-    
+
 </RelativeLayout>

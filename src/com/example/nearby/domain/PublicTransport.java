@@ -1,6 +1,7 @@
 package com.example.nearby.domain;
 
-import java.util.ArrayList;
+import com.example.nearby.storage.NearByDBAdapter;
+import android.database.Cursor;
 
 public class PublicTransport {
 	
@@ -8,17 +9,21 @@ public class PublicTransport {
 	private String type;
 	private float price;
 	private int identifier;
-	private ArrayList<String> schedules;
+	private String schedule;
+	
+	//Constructors
 	
 	public PublicTransport() {}
 	
-	public PublicTransport(String company, String type, int identifier,int price, ArrayList<String> horarios) {
+	public PublicTransport(String company, String type, float price, int identifier, String schedule) {
 		this.company = company;
-		this.identifier = identifier;
 		this.type = type;
 		this.price = price;
-		this.schedules = horarios;	
+		this.identifier = identifier;
+		this.schedule = schedule;	
 	}
+	
+	//Getters and setters
 	
 	public int getIdentifier() {
 		return identifier;
@@ -43,13 +48,34 @@ public class PublicTransport {
 	public float getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(float price) {
 		this.price = price;
 	}
-	public ArrayList<String> getSchedules() {
-		return schedules;
+	public String getSchedule() {
+		return schedule;
 	}
-	public void setHorarios(ArrayList<String> schedules) {
-		this.schedules = schedules;
+	public void setHorarios(String schedule) {
+		this.schedule = schedule;
+	}
+	
+	/**
+     * This method converts a Cursor to a PublicTransport object
+     *
+     * @param cursor The cursor
+     * @return PublicTransport object
+     */
+	public static PublicTransport cursorToPublicTransport(Cursor cursor) {
+	
+		if(!cursor.isAfterLast()) {
+			String company = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_COMPANY));
+			String type = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_TYPE));
+			float price = Float.parseFloat(cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_PRICE)));
+			int identifier = cursor.getInt(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_NUMBER));
+			String schedule = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_SCHEDULE));
+			
+			return new PublicTransport(company, type, price, identifier, schedule);
+		} else {
+			return null;
+		}
 	}
 }

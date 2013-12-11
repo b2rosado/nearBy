@@ -1,39 +1,52 @@
 package com.example.nearby;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.RadioButton;
 
 public class RestaurantsFilterActivity extends Activity {
-
+	private static int STATIC_INTEGER_VALUE = 0;
+	private RadioButton alwaysAlert_btn;
+	private RadioButton onlyPromotions_btn;
+	private RadioButton rb;
+	private String alwaysAlertStatus;
+	private String onlyPromotionStatus;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_restaurants_filter);
+		alwaysAlert_btn = (RadioButton) findViewById(R.id.radio_alwaysAlert);
+		onlyPromotions_btn = (RadioButton) findViewById(R.id.radio_onlyPromotions);
+		
+		//carrega o estado por definição (não é persistente)
+		alwaysAlertStatus = getResources().getString(R.string.vibration);
+		onlyPromotionStatus = getResources().getString(R.string.sound);
+		
+		alwaysAlert_btn.setText(getResources().getString(R.string.alwaysAlert) +"\n"+ alwaysAlertStatus);
+		onlyPromotions_btn.setText(getResources().getString(R.string.onlyPromotions) +"\n"+ onlyPromotionStatus);
 	}
 
 	public void changeAlwaysAlertStatus(View v){
-		TextView alwaysAlertStatus= (TextView) findViewById(R.id.status_alwaysAlert);
-		
-		if(alwaysAlertStatus.getText().equals(getResources().getText(R.string.sound)))
-			alwaysAlertStatus.setText(getResources().getText(R.string.vibration));
-		else if(alwaysAlertStatus.getText().equals(getResources().getText(R.string.vibration)))
-			alwaysAlertStatus.setText(getResources().getText(R.string.vibration_and_sound));
-		else if(alwaysAlertStatus.getText().equals(getResources().getText(R.string.vibration_and_sound)))
-			alwaysAlertStatus.setText(getResources().getText(R.string.sound));
+		rb = alwaysAlert_btn;
+		Intent myIntent = new Intent(this, AlertTypeActivity.class);
+		myIntent.putExtra("alert", rb.getText());
+		startActivityForResult(myIntent, STATIC_INTEGER_VALUE);
 	}
 	
 	public void changeOnlyPromotionStatus(View v){
-		System.out.println("changeOnlyPromotionsStatus called");
-		TextView onlyPromotionsStatus = (TextView) findViewById(R.id.status_onlyPromotions);
-
-		if(onlyPromotionsStatus.getText().equals(getResources().getText(R.string.sound)))
-			onlyPromotionsStatus.setText(getResources().getText(R.string.vibration));
-		else if(onlyPromotionsStatus.getText().equals(getResources().getText(R.string.vibration)))
-			onlyPromotionsStatus.setText(getResources().getText(R.string.vibration_and_sound));
-		else if(onlyPromotionsStatus.getText().equals(getResources().getText(R.string.vibration_and_sound)))
-			onlyPromotionsStatus.setText(getResources().getText(R.string.sound));
+		rb = onlyPromotions_btn;
+		Intent myIntent = new Intent(this, AlertTypeActivity.class);
+		myIntent.putExtra("alert", rb.getText());
+		startActivityForResult(myIntent, STATIC_INTEGER_VALUE);
 	}
-
+	
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data); 
+		if(requestCode == STATIC_INTEGER_VALUE && resultCode == Activity.RESULT_OK) {
+			rb.setText(rb.getText().toString().split("\n")[0] +"\n"+ data.getStringExtra("ALERT_TYPE"));
+		} 
+	}
 }

@@ -4,11 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 public class SettingsActivity extends Activity {
-	private int about_count = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +18,8 @@ public class SettingsActivity extends Activity {
 		startActivity(myIntent);
 	}
 	
-	public void aboutClicked(View v){
-		about_count++;
-		
-		if(about_count==15){
-			TextView text = new TextView(this);
-			text.setText("Best App Ever...");
-			RelativeLayout layout = (RelativeLayout) findViewById(R.id.main_screen);
-			layout.addView(text);
-		}
+	public void openAbout(View v){
+		Intent myIntent = new Intent(this, AboutActivity.class);
+		startActivity(myIntent);
 	}
-
 }
