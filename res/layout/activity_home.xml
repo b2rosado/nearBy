@@ -64,7 +64,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/homescreen_btn_margin"
             android:layout_marginLeft="@dimen/homescreen_btn_margin"
-            android:background="@drawable/monuments"/>
+            android:background="@drawable/monuments"
+            android:onClick="openMonuments"/>
         
         <Button
             android:id="@+id/btn_settings"

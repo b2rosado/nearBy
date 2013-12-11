@@ -58,6 +58,14 @@
             android:name="com.example.nearby.AboutActivity"
             android:label="@string/title_activity_about" >
         </activity>
+        <activity
+            android:name="com.example.nearby.MonumentsActivity"
+            android:label="@string/title_activity_monuments" >
+        </activity>
+        <activity
+            android:name="com.example.nearby.MonumentsInfoActivity"
+            android:label="@string/title_activity_monuments_info" >
+        </activity>
     </application>
 
 </manifest>

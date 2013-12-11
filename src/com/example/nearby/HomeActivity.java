@@ -27,5 +27,11 @@ public class HomeActivity extends Activity {
 		Intent myIntent = new Intent(this, SettingsActivity.class);
 		startActivity(myIntent);
 	}
+	
+	public void openMonuments(View v){
+		Intent myIntent = new Intent(this, MonumentsActivity.class);
+		startActivity(myIntent);
+		
+	}
 
 }
