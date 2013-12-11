@@ -86,9 +86,7 @@
                 android:layout_margin="15px"
                 android:layout_alignBottom="@+id/rateBtn"
                 android:layout_alignParentRight="true"
-                android:background="@drawable/info_icon"
-                android:"/>
-
+                android:background="@drawable/info_icon"/>
         </RelativeLayout>
 
 	</RelativeLayout>

@@ -29,5 +29,6 @@
     <string name="vibration_and_sound">Vibração e Sonoro</string>
     <string name="title_activity_alert_type">AlertTypeActivity</string>
     <string name="alert_type">Tipo de Alerta</string>
+    <string name="title_activity_about">AboutActivity</string>
 
 </resources>
