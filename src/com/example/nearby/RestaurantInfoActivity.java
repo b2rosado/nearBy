@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 public class RestaurantInfoActivity extends Activity implements SensorEventListener{
 	private ImageView image;

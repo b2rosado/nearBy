@@ -6,7 +6,7 @@ import com.example.nearby.storage.NearByDBAdapter;
 
 public class Restaurant {
 	
-	private String name;
+	private String _name; //Unique _id
 	private String type;
 	private float price;
 	private String schedule;
@@ -18,7 +18,7 @@ public class Restaurant {
 	public Restaurant() {}
 	
 	public Restaurant(String name, String type, float price, String schedule, int numberOfVotes, float rating) {
-		this.name = name;
+		this._name = name;
 		this.type = type;
 		this.price = price;
 		this.schedule = schedule;
@@ -29,38 +29,49 @@ public class Restaurant {
 	//Getters and setters
 	
 	public String getName() {
-		return name;
+		return _name;
 	}
+	
 	public void setName(String name) {
-		this.name = name;
+		this._name = name;
 	}
+	
 	public String getType() {
 		return type;
 	}
+	
 	public void setType(String type) {
 		this.type = type;
 	}
+	
 	public float getPrice() {
 		return price;
 	}
+	
 	public void setPrice(float price) {
 		this.price = price;
 	}
+	
 	public String getSchedule() {
 		return schedule;
 	}
+	
 	public void setSchedule(String schedule) {
 		this.schedule = schedule;
 	}
+	
 	public int getNumberOfVotes() {
 		return numberOfVotes;
 	}
+	
 	public void setNumberOfVotes(int numberOfVotes) {
 		this.numberOfVotes = numberOfVotes;
 	}
+	
 	public float getRating() {
 		return rating;
 	}
+	
 	public void setRating(float rating) {
 		this.rating = rating;
 	}
@@ -74,7 +85,7 @@ public class Restaurant {
 	public static Restaurant cursorToRestaurant(Cursor cursor) {
 		
 		if(!cursor.isAfterLast()) {
-			String name = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_RESTAURANT_NAME));
+			String name = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_RESTAURANT_NAME_ID));
 			String type = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_RESTAURANT_TYPE));
 			float price = Float.parseFloat(cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_RESTAURANT_PRICE)));
 			String schedule = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_RESTAURANT_SCHEDULE));
