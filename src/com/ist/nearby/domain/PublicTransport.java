@@ -1,6 +1,7 @@
-package com.example.nearby.domain;
+package com.ist.nearby.domain;
 
-import com.example.nearby.storage.NearByDBAdapter;
+import com.ist.nearby.storage.NearByDBAdapter;
+
 import android.database.Cursor;
 
 public class PublicTransport {

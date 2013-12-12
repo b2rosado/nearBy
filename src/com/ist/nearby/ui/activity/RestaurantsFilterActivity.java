@@ -1,4 +1,6 @@
-package com.example.nearby;
+package com.ist.nearby.ui.activity;
+
+import com.example.nearby.R;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -43,6 +45,7 @@ public class RestaurantsFilterActivity extends Activity {
 		startActivityForResult(myIntent, STATIC_INTEGER_VALUE);
 	}
 	
+	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data); 
 		if(requestCode == STATIC_INTEGER_VALUE && resultCode == Activity.RESULT_OK) {

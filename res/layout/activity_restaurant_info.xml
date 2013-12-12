@@ -39,16 +39,16 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+            
             <TextView
-                android:id="@+id/name_lbl"
+                android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="35px"
-                android:textSize="20sp"
-                android:text="Café do Aires" />
+                android:textSize="20sp"/>
 
            <Button
                 android:id="@+id/rateBtn"
@@ -57,7 +57,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:textSize="14sp"
-                android:text="Classificar" />
+                android:text="Classificar"/>
            
             <RatingBar
                 android:id="@+id/ratingBarView"
@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_above="@id/ratingBarView"
-                android:src="@drawable/arrow" />
+                android:src="@drawable/arrow"/>
 
             <Button
                 android:layout_width="40px"
@@ -90,6 +90,5 @@
         </RelativeLayout>
 
 	</RelativeLayout>
-
 
 </RelativeLayout>

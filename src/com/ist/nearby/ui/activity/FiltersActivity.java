@@ -1,4 +1,6 @@
-package com.example.nearby;
+package com.ist.nearby.ui.activity;
+
+import com.example.nearby.R;
 
 import android.app.Activity;
 import android.content.Intent;

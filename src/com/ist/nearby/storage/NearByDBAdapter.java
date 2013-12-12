@@ -1,10 +1,10 @@
-package com.example.nearby.storage;
+package com.ist.nearby.storage;
 
 import java.util.ArrayList;
 
-import com.example.nearby.domain.InterestPoint;
-import com.example.nearby.domain.PublicTransport;
-import com.example.nearby.domain.Restaurant;
+import com.ist.nearby.domain.InterestPoint;
+import com.ist.nearby.domain.PublicTransport;
+import com.ist.nearby.domain.Restaurant;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -26,6 +26,7 @@ public class NearByDBAdapter {
 	//Interest Points table columns
 	public static final String KEY_INTEREST_POINTS_NAME_ID = "_name";
 	public static final String KEY_INTEREST_POINTS_DESCRIPTION = "description";
+	public static final String KEY_INTEREST_POINTS_TYPE = "type";
 	public static final String KEY_INTEREST_POINTS_PRICE = "price";
 	public static final String KEY_INTEREST_POINTS_SCHEDULE = "schedule";
 	public static final String KEY_INTEREST_POINTS_VOTES = "number_of_votes";
@@ -52,31 +53,38 @@ public class NearByDBAdapter {
 	private static final String TABLE_INTEREST_POINTS = "interest_points";
 	private static final String TABLE_RESTAURANTS = "restaurants";
 	private static final int DATABASE_VERSION = 1;
+	
 	private final Context mCtx;
 
 	//Table creation SQL Statements
 
-	private static final String CREATE_TABLE_PUBLIC_TRANSPORTS = "CREATE TABLE " + TABLE_PUBLIC_TRANSPORTS + " (" + KEY_TRANSPORTS_ID + " INTEGER PRIMARY KEY, "
-			+ KEY_TRANSPORTS_COMPANY + " TEXT NOT NULL; " + KEY_TRANSPORTS_TYPE + " TEXT NOT NULL, " + KEY_TRANSPORTS_PRICE + " TEXT NOT NULL, "
+	private static final String CREATE_TABLE_PUBLIC_TRANSPORTS = 
+			"CREATE TABLE IF NOT EXISTS " + TABLE_PUBLIC_TRANSPORTS + " (" + KEY_TRANSPORTS_ID + " INTEGER PRIMARY KEY, "
+			+ KEY_TRANSPORTS_COMPANY + " TEXT NOT NULL, " + KEY_TRANSPORTS_TYPE + " TEXT NOT NULL, " + KEY_TRANSPORTS_PRICE + " TEXT NOT NULL, "
 			+ KEY_TRANSPORTS_SCHEDULE + " TEXT NOT NULL);";
 
-	private static final String CREATE_TABLE_INTEREST_POINTS = "CREATE TABLE " + TABLE_INTEREST_POINTS + " (" + KEY_INTEREST_POINTS_NAME_ID + " TEXT PRIMARY KEY, " 
-			+ KEY_INTEREST_POINTS_DESCRIPTION + " TEXT NOT NULL, " + KEY_INTEREST_POINTS_PRICE + " TEXT NOT NULL, " + KEY_INTEREST_POINTS_SCHEDULE + " TEXT NOT NULL, " 
-			+ KEY_INTEREST_POINTS_VOTES + " INTEGER NOT NULL, " + KEY_INTEREST_POINTS_RATING + " TEXT NOT NULL);";
+	private static final String CREATE_TABLE_INTEREST_POINTS = 
+			"CREATE TABLE IF NOT EXISTS " + TABLE_INTEREST_POINTS + " (" + KEY_INTEREST_POINTS_NAME_ID + " TEXT PRIMARY KEY, " 
+			+ KEY_INTEREST_POINTS_DESCRIPTION + " TEXT NOT NULL, " + KEY_INTEREST_POINTS_TYPE + " TEXT NOT NULL, " + KEY_INTEREST_POINTS_PRICE + " TEXT NOT NULL, " 
+			+ KEY_INTEREST_POINTS_SCHEDULE + " TEXT NOT NULL, " + KEY_INTEREST_POINTS_VOTES + " INTEGER NOT NULL, " + KEY_INTEREST_POINTS_RATING + " TEXT NOT NULL);";
 
-	private static final String CREATE_TABLE_RESTAURANTS = "CREATE TABLE " + TABLE_INTEREST_POINTS + " (" + KEY_RESTAURANT_NAME_ID + " TEXT PRIMARY KEY, "
+	private static final String CREATE_TABLE_RESTAURANTS = 
+			"CREATE TABLE IF NOT EXISTS " + TABLE_RESTAURANTS + " (" + KEY_RESTAURANT_NAME_ID + " TEXT PRIMARY KEY, "
 			+ KEY_RESTAURANT_TYPE + " TEXT NOT NULL, " + KEY_RESTAURANT_PRICE + " TEXT NOT NULL, " + KEY_RESTAURANT_SCHEDULE + " TEXT NOT NULL, " 
 			+ KEY_RESTAURANT_VOTES + " INTEGER NOT NULL, " + KEY_RESTAURANT_RATING + " TEXT NOT NULL);";
 
 	//Table insertion SQL Statements
 
-	private static final String TABLE_PUBLIC_TRANSPORTS_INSERT = "INSERT INTO " + TABLE_PUBLIC_TRANSPORTS + " (" + KEY_TRANSPORTS_ID + "," + KEY_TRANSPORTS_COMPANY + "," 
+	private static final String TABLE_PUBLIC_TRANSPORTS_INSERT = 
+			"INSERT INTO " + TABLE_PUBLIC_TRANSPORTS + " (" + KEY_TRANSPORTS_ID + "," + KEY_TRANSPORTS_COMPANY + "," 
 			+ KEY_TRANSPORTS_TYPE + "," + KEY_TRANSPORTS_PRICE + "," + KEY_TRANSPORTS_SCHEDULE + ") VALUES (?,?,?,?,?)";
 
-	private static final String TABLE_INTEREST_POINTS_INSERT = "INSERT INTO " + TABLE_INTEREST_POINTS + " (" + KEY_INTEREST_POINTS_NAME_ID + "," + KEY_INTEREST_POINTS_DESCRIPTION + "," 
-			+ KEY_INTEREST_POINTS_PRICE + "," + KEY_INTEREST_POINTS_SCHEDULE + "," + KEY_INTEREST_POINTS_VOTES + "," + KEY_INTEREST_POINTS_RATING + ") VALUES (?,?,?,?,?,?)";
+	private static final String TABLE_INTEREST_POINTS_INSERT = 
+			"INSERT INTO " + TABLE_INTEREST_POINTS + " (" + KEY_INTEREST_POINTS_NAME_ID + "," + KEY_INTEREST_POINTS_DESCRIPTION + "," 
+			+ KEY_INTEREST_POINTS_TYPE + "," + KEY_INTEREST_POINTS_PRICE + "," + KEY_INTEREST_POINTS_SCHEDULE + "," + KEY_INTEREST_POINTS_VOTES + "," + KEY_INTEREST_POINTS_RATING + ") VALUES (?,?,?,?,?,?,?)";
 
-	private static final String TABLE_RESTAURANTS_INSERT = "INSERT INTO " + TABLE_RESTAURANTS + " (" + KEY_RESTAURANT_NAME_ID + "," + KEY_RESTAURANT_TYPE + "," 
+	private static final String TABLE_RESTAURANTS_INSERT = 
+			"INSERT INTO " + TABLE_RESTAURANTS + " (" + KEY_RESTAURANT_NAME_ID + "," + KEY_RESTAURANT_TYPE + "," 
 			+ KEY_RESTAURANT_PRICE + "," + KEY_RESTAURANT_SCHEDULE + "," + KEY_RESTAURANT_VOTES + "," + KEY_RESTAURANT_RATING + ") VALUES (?,?,?,?,?,?)";
 
 
@@ -114,6 +122,14 @@ public class NearByDBAdapter {
 		}	
 	}
 
+	//Database singleton
+	public synchronized static NearByDBAdapter getInstance(Context ctx) {
+		if(mDataBaseInstance == null) {
+			mDataBaseInstance = new NearByDBAdapter(ctx);
+		}
+		return mDataBaseInstance;
+	}
+	
 	public NearByDBAdapter(Context ctx) {
 		this.mCtx = ctx;
 		mDbHelper = new DatabaseHelper(mCtx.getApplicationContext());
@@ -126,14 +142,6 @@ public class NearByDBAdapter {
 		mDbHelper.close();
 	}
 
-	//Database singleton
-	public synchronized static NearByDBAdapter getInstance(Context ctx) {
-		if(mDataBaseInstance == null) {
-			mDataBaseInstance = new NearByDBAdapter(ctx);
-		}
-		return mDataBaseInstance;
-	}
-
 	// ************************************************************************* //	
 
 	/**
@@ -143,9 +151,9 @@ public class NearByDBAdapter {
 	 */
 	public boolean tablesExist() {
 		
-		Cursor cursorTransports = mDb.rawQuery("SELECT COUNT(*) FROM sqlite_master WHERE type = ? AND name = ?", new String[] {"table", TABLE_PUBLIC_TRANSPORTS});
-		Cursor cursorInterestPoints = mDb.rawQuery("SELECT COUNT(*) FROM sqlite_master WHERE type = ? AND name = ?", new String[] {"table", TABLE_INTEREST_POINTS});
-		Cursor cursorRestaurants = mDb.rawQuery("SELECT COUNT(*) FROM sqlite_master WHERE type = ? AND name = ?", new String[] {"table", TABLE_RESTAURANTS});
+		Cursor cursorTransports = mDb.rawQuery("SELECT COUNT(*) FROM " + TABLE_PUBLIC_TRANSPORTS, null);
+		Cursor cursorInterestPoints = mDb.rawQuery("SELECT COUNT(*) FROM " + TABLE_INTEREST_POINTS, null);
+		Cursor cursorRestaurants = mDb.rawQuery("SELECT COUNT(*) FROM " + TABLE_RESTAURANTS, null);
 		
 		if(!cursorTransports.moveToFirst() || !cursorInterestPoints.moveToFirst() || !cursorRestaurants.moveToFirst()) {
 			return false;
@@ -231,6 +239,25 @@ public class NearByDBAdapter {
 
 		return publicTransports;	
 	}
+	
+	/**
+	 * This fetches a PublicTransport with the specified id
+	 *
+	 * @param id The PublicTransport id
+	 * @return PublicTransport The specified PublicTransport
+	 */
+	public PublicTransport fetchTransport(int id) {
+		
+		PublicTransport publicTransport = null;
+		Cursor cursor = mDb.rawQuery("SELECT * FROM " + TABLE_PUBLIC_TRANSPORTS + " WHERE " + KEY_TRANSPORTS_ID + "=?", new String[]{"" + id});
+		
+		if(cursor != null) {
+            cursor.moveToFirst();
+            publicTransport = PublicTransport.cursorToPublicTransport(cursor);
+            cursor.close();
+        }
+		return publicTransport;
+	}
 
 	/**
 	 * This updates the interest_points table content
@@ -254,10 +281,11 @@ public class NearByDBAdapter {
 
 				stmt.bindString(1, interestPoint.getName());
 				stmt.bindString(2, interestPoint.getDescription());
-				stmt.bindString(3, Float.toString(interestPoint.getPrice()));
-				stmt.bindString(4, interestPoint.getSchedule());
-				stmt.bindLong(5, interestPoint.getNumberOfVotes());
-				stmt.bindString(6, Float.toString(interestPoint.getRating()));
+				stmt.bindString(3, interestPoint.getType());
+				stmt.bindString(4, Float.toString(interestPoint.getPrice()));
+				stmt.bindString(5, interestPoint.getSchedule());
+				stmt.bindLong(6, interestPoint.getNumberOfVotes());
+				stmt.bindString(7, Float.toString(interestPoint.getRating()));
 
 				if(stmt.executeInsert() == -1) {
 					stmt.clearBindings();
@@ -300,6 +328,25 @@ public class NearByDBAdapter {
 		return interestPoints;	
 	}
 
+	/**
+	 * This fetches a InterestPoint with the specified id
+	 *
+	 * @param id The InterestPoint id
+	 * @return InterestPoint The specified InterestPoint
+	 */
+	public InterestPoint fetchInterestPoint(String interestPointName) {
+		
+		InterestPoint interestPoint = null;
+		Cursor cursor = mDb.rawQuery("SELECT * FROM " + TABLE_INTEREST_POINTS + " WHERE " + KEY_INTEREST_POINTS_NAME_ID + "=?", new String[]{"" + interestPointName});
+		
+		if(cursor != null) {
+            cursor.moveToFirst();
+            interestPoint = InterestPoint.cursorToInterestPoint(cursor);
+            cursor.close();
+        }
+		return interestPoint;
+	}
+	
 	/**
 	 * This updates the restaurants table content
 	 *
@@ -366,5 +413,24 @@ public class NearByDBAdapter {
 		cursor.close();
 
 		return restaurants;	
+	}
+	
+	/**
+	 * This fetches a Restaurant with the specified id
+	 *
+	 * @param id The Restaurant id
+	 * @return Restaurant The specified Restaurant
+	 */
+	public Restaurant fetchRestaurant(String restaurantName) {
+		
+		Restaurant restaurant = null;
+		Cursor cursor = mDb.rawQuery("SELECT * FROM " + TABLE_RESTAURANTS + " WHERE " + KEY_RESTAURANT_NAME_ID + "=?", new String[]{"" + restaurantName});
+		
+		if(cursor != null) {
+            cursor.moveToFirst();
+            restaurant = Restaurant.cursorToRestaurant(cursor);
+            cursor.close();
+        }
+		return restaurant;
 	}
 }

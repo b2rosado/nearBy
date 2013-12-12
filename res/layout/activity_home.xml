@@ -54,18 +54,18 @@
             android:layout_marginTop="@dimen/homescreen_btn_margin"
             android:layout_marginRight="@dimen/homescreen_btn_margin"
             android:background="@drawable/restaurants"
-            android:onClick="openRestaurantes"/>
+            android:onClick="openRestaurants"/>
         
         <Button
-            android:id="@+id/btn_monuments"
+            android:id="@+id/btn_interest_points"
             android:layout_width="@dimen/homescreen_btn_size"
             android:layout_height="@dimen/homescreen_btn_size"
             android:layout_alignParentLeft="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/homescreen_btn_margin"
             android:layout_marginLeft="@dimen/homescreen_btn_margin"
-            android:background="@drawable/monuments"
-            android:onClick="openMonuments"/>
+            android:background="@drawable/interestpoints"
+            android:onClick="openInterestPoints"/>
         
         <Button
             android:id="@+id/btn_settings"

@@ -1,13 +1,14 @@
-package com.example.nearby.domain;
+package com.ist.nearby.domain;
 
 import android.database.Cursor;
 
-import com.example.nearby.storage.NearByDBAdapter;
+import com.ist.nearby.storage.NearByDBAdapter;
 
 public class InterestPoint {
 	
 	private String _name; //Unique _id
 	private String description;
+	private String type;
 	private float price;
 	private String schedule;
 	private int numberOfVotes;
@@ -17,9 +18,10 @@ public class InterestPoint {
 	
 	public InterestPoint(){}
 	
-	public InterestPoint(String name, String description, float price, String schedule, int numberOfVotes, float rating){
+	public InterestPoint(String name, String description, String type, float price, String schedule, int numberOfVotes, float rating){
 		this._name = name;
 		this.description = description;
+		this.setType(type);
 		this.price = price;
 		this.schedule = schedule;
 		this.numberOfVotes = numberOfVotes;
@@ -42,6 +44,14 @@ public class InterestPoint {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public float getPrice() {
@@ -87,12 +97,13 @@ public class InterestPoint {
 		if(!cursor.isAfterLast()) {
 			String name = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_NAME_ID));
 			String description = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_DESCRIPTION));
+			String type = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_TYPE));
 			float price = Float.parseFloat(cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_PRICE)));
 			String schedule = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_SCHEDULE));
 			int numberOfVotes = cursor.getInt(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_VOTES));
 			float rating = Float.parseFloat(cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_INTEREST_POINTS_RATING)));
 					
-			return new InterestPoint(name, description, price, schedule, numberOfVotes, rating);
+			return new InterestPoint(name, description, type, price, schedule, numberOfVotes, rating);
 		} else {
 			return null;
 		}

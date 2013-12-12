@@ -1,8 +1,8 @@
-package com.example.nearby.domain;
+package com.ist.nearby.domain;
 
 import android.database.Cursor;
 
-import com.example.nearby.storage.NearByDBAdapter;
+import com.ist.nearby.storage.NearByDBAdapter;
 
 public class Restaurant {
 	

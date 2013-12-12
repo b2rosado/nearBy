@@ -1,4 +1,8 @@
-package com.example.nearby;
+package com.ist.nearby.ui.activity;
+
+import com.example.nearby.R;
+import com.ist.nearby.domain.InterestPoint;
+import com.ist.nearby.storage.NearByDBAdapter;
 
 import android.app.Activity;
 import android.hardware.Sensor;
@@ -9,17 +13,33 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.TextView;
 
-public class MonumentsInfoActivity extends Activity implements SensorEventListener{
-	private ImageView image;
-    private float currentDegree = 0f;
+public class InterestPointsInfoActivity extends Activity implements SensorEventListener{
+	
+	private ImageView mImage;
+	private TextView mName;
+	
+	private InterestPoint mInterestPoint;
+	private NearByDBAdapter mDbHelper;
+	
+	private float currentDegree = 0f;
     private SensorManager mSensorManager;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_monuments_info);
-		image = (ImageView) findViewById(R.id.navigation_arrow);
+		setContentView(R.layout.activity_interest_points_info);
+		
+		Bundle extras = getIntent().getExtras();
+		if(extras != null) {
+			mDbHelper = NearByDBAdapter.getInstance(getApplicationContext());
+			mInterestPoint = mDbHelper.fetchInterestPoint(extras.getString("INTEREST_POINT_NAME_ID"));
+			mDbHelper.close();
+		}
+		
+		mName = (TextView) findViewById(R.id.tv_name);	
+		mImage = (ImageView) findViewById(R.id.navigation_arrow);
 		
 		// initialize your android device sensor capabilities
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -40,15 +60,17 @@ public class MonumentsInfoActivity extends Activity implements SensorEventListen
 		ra.setFillAfter(true);
 		
 		// Start the animation
-		image.startAnimation(ra);
+		mImage.startAnimation(ra);
 		currentDegree = -degree;		
 	}
 	
+	@Override
 	@SuppressWarnings("deprecation")
 	protected void onResume() {
 	    super.onResume();
 	    // for the system's orientation sensor registered listeners
 	    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_GAME);
+	    mName.setText(mInterestPoint.getName());
 	}
 	
 	@Override
@@ -62,5 +84,4 @@ public class MonumentsInfoActivity extends Activity implements SensorEventListen
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		//not in use
 	}
-
 }
