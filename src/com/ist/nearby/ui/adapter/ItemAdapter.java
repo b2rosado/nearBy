@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class ItemAdapter extends BaseAdapter {
@@ -64,9 +65,12 @@ public class ItemAdapter extends BaseAdapter {
 			PublicTransport publicTransport = publicTransportItem.getPublicTransport();
 			
 			convertView = layoutInflater.inflate(R.layout.list_item_entry, null);
+			convertView.setPadding(5, 19, 5, 19);
 			
 			final TextView name = (TextView) convertView.findViewById(R.id.tv_name);
 			final TextView timeLeft = (TextView) convertView.findViewById(R.id.tv_info);
+			final RatingBar rating = (RatingBar) convertView.findViewById(R.id.ratingBarListView);
+			rating.setVisibility(View.GONE);
 			
 			name.setText(publicTransport.getCompany());
 			timeLeft.setText(publicTransport.getSchedule());
@@ -79,15 +83,12 @@ public class ItemAdapter extends BaseAdapter {
 			convertView = layoutInflater.inflate(R.layout.list_item_entry, null);
 			
 			final TextView name = (TextView) convertView.findViewById(R.id.tv_name);
-			final TextView rating = (TextView) convertView.findViewById(R.id.tv_info);
+			final TextView schedule = (TextView) convertView.findViewById(R.id.tv_info);
+			final RatingBar rating =(RatingBar) convertView.findViewById(R.id.ratingBarListView);
 			
-			if(interestPoint.getName().length() < 20) {
-				name.setText(interestPoint.getName());
-			} else {
-				name.setText(interestPoint.getName().substring(0, 20) + "...");
-			}
-			
-			rating.setText(interestPoint.getRating() + context.getString(R.string.rating_max));
+			name.setText(interestPoint.getName());
+			schedule.setText(interestPoint.getSchedule());
+			rating.setRating(interestPoint.getRating());
 			
 		} else if (item.isRestaurant()) {
 			
@@ -97,10 +98,12 @@ public class ItemAdapter extends BaseAdapter {
 			convertView = layoutInflater.inflate(R.layout.list_item_entry, null);
 			
 			final TextView name = (TextView) convertView.findViewById(R.id.tv_name);
-			final TextView rating = (TextView) convertView.findViewById(R.id.tv_info);
+			final TextView schedule = (TextView) convertView.findViewById(R.id.tv_info);
+			final RatingBar rating =(RatingBar) convertView.findViewById(R.id.ratingBarListView);
 			
 			name.setText(restaurant.getName());
-			rating.setText(restaurant.getRating() + context.getString(R.string.rating_max));
+			schedule.setText(restaurant.getSchedule());
+			rating.setRating(restaurant.getRating());
 		}
 		
 		return convertView;

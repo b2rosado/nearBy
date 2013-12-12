@@ -15,8 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left"
         android:gravity="left"
-        android:textColor="@android:color/black"
-        android:textAppearance="?android:attr/textAppearanceMedium" >
+        android:textColor="@android:color/black">
     </TextView>
     
     <TextView
@@ -26,8 +25,16 @@
         android:layout_gravity="right"
         android:gravity="right"
         android:layout_toRightOf="@+id/tv_name"
-        android:textColor="@android:color/black"
-        android:textAppearance="?android:attr/textAppearanceMedium" >
-    </TextView>   
+        android:textColor="@android:color/black">
+    </TextView>  
+    <RatingBar
+        android:id="@+id/ratingBarListView"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_info"
+        android:scaleX="1.1"
+        android:scaleY="1.1"
+        /> 
 
 </RelativeLayout>

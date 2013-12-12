@@ -4,14 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import com.example.nearby.R;
-import com.ist.nearby.domain.InterestPoint;
-import com.ist.nearby.storage.NearByDBAdapter;
-import com.ist.nearby.ui.adapter.InterestPointItem;
-import com.ist.nearby.ui.adapter.Item;
-import com.ist.nearby.ui.adapter.ItemAdapter;
-import com.ist.nearby.ui.adapter.SectionItem;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +11,14 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.example.nearby.R;
+import com.ist.nearby.domain.InterestPoint;
+import com.ist.nearby.storage.NearByDBAdapter;
+import com.ist.nearby.ui.adapter.InterestPointItem;
+import com.ist.nearby.ui.adapter.Item;
+import com.ist.nearby.ui.adapter.ItemAdapter;
+import com.ist.nearby.ui.adapter.SectionItem;
 
 public class InterestPointsActivity extends Activity {
 
@@ -41,7 +41,7 @@ public class InterestPointsActivity extends Activity {
 		updateInterestPoints(fetchInterestPoints());
 	}
 	
-	private ArrayList<InterestPoint> fetchInterestPoints() {
+	private ArrayList<InterestPoint> fetchInterestPoints(){
 		
 		ArrayList<InterestPoint> interestPoints;
 		mDbHelper = NearByDBAdapter.getInstance(getApplicationContext());
@@ -65,10 +65,8 @@ public class InterestPointsActivity extends Activity {
 		
 		int index = 0;
 		
-		for(InterestPoint interestPoint : interestPoints) {
-			
+		for(InterestPoint interestPoint : interestPoints) {			
 			String type = interestPoint.getType();
-			
 			if(!type.equals(auxType)) {
 				items.add(new SectionItem(type));
 				auxType = type;
