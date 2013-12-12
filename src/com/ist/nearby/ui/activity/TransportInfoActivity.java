@@ -20,6 +20,7 @@ public class TransportInfoActivity extends Activity implements SensorEventListen
 	private ImageView mImage;
 	private TextView mName;
 	private TextView mSchedule;
+	private TextView mDestination;
 	
 	private PublicTransport mPublicTransport;
 	private NearByDBAdapter mDbHelper;
@@ -41,6 +42,7 @@ public class TransportInfoActivity extends Activity implements SensorEventListen
 		
 		mName = (TextView) findViewById(R.id.tv_name);	
 		mSchedule = (TextView) findViewById(R.id.tv_schedule);
+		mDestination = (TextView) findViewById(R.id.tv_destination);
 		mImage = (ImageView) findViewById(R.id.navigation_arrow);
 		
 		// initialize your android device sensor capabilities
@@ -48,6 +50,7 @@ public class TransportInfoActivity extends Activity implements SensorEventListen
 		
 		mName.setText(mPublicTransport.getCompany());
 		mSchedule.setText(mPublicTransport.getSchedule());
+		mDestination.setText("Destino: " + mPublicTransport.getDestination());
 	}
 	
 	@Override
