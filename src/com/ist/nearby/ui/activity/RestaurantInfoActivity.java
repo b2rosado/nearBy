@@ -92,4 +92,5 @@ public class RestaurantInfoActivity extends Activity implements SensorEventListe
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		//not in use
 	}
+
 }
