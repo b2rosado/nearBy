@@ -2,11 +2,6 @@ package com.ist.nearby.ui.adapter;
 
 import java.util.ArrayList;
 
-import com.example.nearby.R;
-import com.ist.nearby.domain.InterestPoint;
-import com.ist.nearby.domain.PublicTransport;
-import com.ist.nearby.domain.Restaurant;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +9,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.example.nearby.R;
+import com.ist.nearby.domain.InterestPoint;
+import com.ist.nearby.domain.PublicTransport;
+import com.ist.nearby.domain.Restaurant;
 
 public class ItemAdapter extends BaseAdapter {
 
@@ -70,6 +70,7 @@ public class ItemAdapter extends BaseAdapter {
 			final TextView name = (TextView) convertView.findViewById(R.id.tv_name);
 			final TextView timeLeft = (TextView) convertView.findViewById(R.id.tv_info);
 			final RatingBar rating = (RatingBar) convertView.findViewById(R.id.ratingBarListView);
+			
 			rating.setVisibility(View.GONE);
 			
 			name.setText(publicTransport.getCompany());

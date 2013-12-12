@@ -50,8 +50,8 @@
             android:layout_below="@+id/logo"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10px"
-            android:textAlignment="viewEnd"
-            android:text="   Desenvolvido por:\n          TheRelvas\n                biTo\noGajoDaLicenciatura"/>
+            android:gravity="center_horizontal"
+            android:text="Desenvolvido por:\nFilipe Relvas\nLuís Rosado\nPedro Lopes"/>
     </RelativeLayout>
 
 </RelativeLayout>
