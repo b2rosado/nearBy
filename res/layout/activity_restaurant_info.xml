@@ -67,7 +67,8 @@
                 android:layout_alignParentBottom="true"
                 android:textSize="12sp"
                 android:text="Classificar Local"
-                android:background="@drawable/btn_background"/>
+                android:background="@drawable/btn_background"
+                android:onClick="openRate"/>
 	        <RatingBar
 	            android:id="@+id/ratingBarView"
 	            style="?android:attr/ratingBarStyleSmall"
@@ -86,8 +87,7 @@
 	            android:layout_alignParentRight="true"
 	            android:layout_above="@id/rateBtn"
 	            android:layout_marginBottom="10px"
-	            android:layout_marginRight="10px"
-	            android:text="lol"/>
+	            android:layout_marginRight="10px"/>
         </RelativeLayout>
 	</RelativeLayout>
 

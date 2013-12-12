@@ -39,22 +39,22 @@
             android:label="@string/title_activity_restaurant_info" >
         </activity>
         <activity
-        	android:name="com.ist.nearby.ui.activity.SettingsActivity"
+            android:name="com.ist.nearby.ui.activity.SettingsActivity"
             android:label="@string/title_activity_settings" >
         </activity>
-        <activity          
+        <activity
             android:name="com.ist.nearby.ui.activity.FiltersActivity"
             android:label="@string/title_activity_filters" >
         </activity>
         <activity
-        	android:name="com.ist.nearby.ui.activity.RestaurantsFilterActivity"
-            android:label="@string/title_activity_restaurants_filter"> 
-        </activity> 
+            android:name="com.ist.nearby.ui.activity.RestaurantsFilterActivity"
+            android:label="@string/title_activity_restaurants_filter" >
+        </activity>
         <activity
             android:name="com.ist.nearby.ui.activity.AlertTypeActivity"
             android:label="@string/title_activity_alert_type" >
-        </activity> 
-        <activity           
+        </activity>
+        <activity
             android:name="com.ist.nearby.ui.activity.AboutActivity"
             android:label="@string/title_activity_about" >
         </activity>
@@ -63,8 +63,12 @@
             android:label="@string/title_activity_interest_points" >
         </activity>
         <activity
-        	android:name="com.ist.nearby.ui.activity.InterestPointsInfoActivity"
+            android:name="com.ist.nearby.ui.activity.InterestPointsInfoActivity"
             android:label="@string/title_activity_interest_points_info" >
+        </activity>
+        <activity
+            android:name="com.ist.nearby.ui.activity.RateActivity"
+            android:label="@string/title_activity_rate" >
         </activity>
     </application>
 

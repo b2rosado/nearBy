@@ -34,6 +34,7 @@
     <string name="interest_points">Pontos de Interesse</string>
     <string name="title_activity_interest_points_info">InterestPointsInfoActivity</string>
     <string name="interest_point_info">Informação do Ponto de Interesse</string>
-    <string name="rating_max">/5</string>
+    <string name="title_activity_rate">RateActivity</string>
+    <string name="rate">Classificação</string>
 
 </resources>

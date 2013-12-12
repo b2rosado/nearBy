@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -86,10 +87,12 @@ public class ItemAdapter extends BaseAdapter {
 			final TextView name = (TextView) convertView.findViewById(R.id.tv_name);
 			final TextView schedule = (TextView) convertView.findViewById(R.id.tv_info);
 			final RatingBar rating =(RatingBar) convertView.findViewById(R.id.ratingBarListView);
+			final ImageView clock = (ImageView) convertView.findViewById(R.id.clock_icon);
 			
 			name.setText(interestPoint.getName());
 			schedule.setText(interestPoint.getSchedule());
 			rating.setRating(interestPoint.getRating());
+			clock.setVisibility(View.GONE);
 			
 		} else if (item.isRestaurant()) {
 			
@@ -101,10 +104,12 @@ public class ItemAdapter extends BaseAdapter {
 			final TextView name = (TextView) convertView.findViewById(R.id.tv_name);
 			final TextView schedule = (TextView) convertView.findViewById(R.id.tv_info);
 			final RatingBar rating =(RatingBar) convertView.findViewById(R.id.ratingBarListView);
+			final ImageView clock = (ImageView) convertView.findViewById(R.id.clock_icon);
 			
 			name.setText(restaurant.getName());
 			schedule.setText(restaurant.getSchedule());
 			rating.setRating(restaurant.getRating());
+			clock.setVisibility(View.GONE);
 		}
 		
 		return convertView;

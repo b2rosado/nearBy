@@ -1,20 +1,22 @@
 package com.ist.nearby.ui.activity;
 
-import com.example.nearby.R;
-import com.ist.nearby.domain.Restaurant;
-import com.ist.nearby.storage.NearByDBAdapter;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import com.example.nearby.R;
+import com.ist.nearby.domain.Restaurant;
+import com.ist.nearby.storage.NearByDBAdapter;
 
 public class RestaurantInfoActivity extends Activity implements SensorEventListener {
 	
@@ -50,8 +52,14 @@ public class RestaurantInfoActivity extends Activity implements SensorEventListe
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		
 		mName.setText(mRestaurant.getName());
-	    mRating.setRating(mRestaurant.getRating());
 	    mSchedule.setText(mRestaurant.getSchedule());
+	}
+	
+	public void openRate(View v){
+		Intent myIntent = new Intent(this, RateActivity.class);
+		myIntent.putExtra("LOCAL_NAME_ID", mRestaurant.getName());
+		
+		startActivity(myIntent);
 	}
 
 	@Override
@@ -79,6 +87,7 @@ public class RestaurantInfoActivity extends Activity implements SensorEventListe
 	    super.onResume();
 	    // for the system's orientation sensor registered listeners
 	    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_GAME);
+	    mRating.setRating(mRestaurant.getRating());
 	}
 	
 	@Override
