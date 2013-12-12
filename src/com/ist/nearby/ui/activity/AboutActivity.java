@@ -16,7 +16,7 @@ public class AboutActivity extends Activity {
 	}
 	
 	public void logoClicked(View v){
-		if(logoCount++ == 12){
+		if(logoCount++ == 20){
 			logoCount=0;
 			RelativeLayout screen = (RelativeLayout) findViewById(R.id.smartwatch_screen);			
 			screen.setBackground(getResources().getDrawable(R.drawable.zorro));
