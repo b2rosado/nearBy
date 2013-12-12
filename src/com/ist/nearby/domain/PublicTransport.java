@@ -11,17 +11,19 @@ public class PublicTransport {
 	private String type;
 	private float price;
 	private String schedule;
+	private String destination;
 	
 	//Constructors
 	
 	public PublicTransport() {}
 	
-	public PublicTransport(int id, String company, String type, float price, String schedule) {
+	public PublicTransport(int id, String company, String type, float price, String schedule, String destination) {
 		this._id = id;
 		this.company = company;
 		this.type = type;
 		this.price = price;
-		this.schedule = schedule;	
+		this.schedule = schedule;
+		this.destination = destination;
 	}
 	
 	//Getters and setters
@@ -66,6 +68,14 @@ public class PublicTransport {
 		this.schedule = schedule;
 	}
 	
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+	
 	/**
      * This method converts a Cursor to a PublicTransport object
      *
@@ -80,8 +90,9 @@ public class PublicTransport {
 			String type = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_TYPE));
 			float price = Float.parseFloat(cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_PRICE)));
 			String schedule = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_SCHEDULE));
+			String destination = cursor.getString(cursor.getColumnIndex(NearByDBAdapter.KEY_TRANSPORTS_DESTINATION));
 			
-			return new PublicTransport(id, company, type, price, schedule);
+			return new PublicTransport(id, company, type, price, schedule, destination);
 		} else {
 			return null;
 		}

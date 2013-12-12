@@ -22,6 +22,7 @@ public class NearByDBAdapter {
 	public static final String KEY_TRANSPORTS_TYPE = "type";
 	public static final String KEY_TRANSPORTS_PRICE = "price";
 	public static final String KEY_TRANSPORTS_SCHEDULE = "schedule";
+	public static final String KEY_TRANSPORTS_DESTINATION = "destination";
 
 	//Interest Points table columns
 	public static final String KEY_INTEREST_POINTS_NAME_ID = "_name";
@@ -61,7 +62,7 @@ public class NearByDBAdapter {
 	private static final String CREATE_TABLE_PUBLIC_TRANSPORTS = 
 			"CREATE TABLE IF NOT EXISTS " + TABLE_PUBLIC_TRANSPORTS + " (" + KEY_TRANSPORTS_ID + " INTEGER PRIMARY KEY, "
 			+ KEY_TRANSPORTS_COMPANY + " TEXT NOT NULL, " + KEY_TRANSPORTS_TYPE + " TEXT NOT NULL, " + KEY_TRANSPORTS_PRICE + " TEXT NOT NULL, "
-			+ KEY_TRANSPORTS_SCHEDULE + " TEXT NOT NULL);";
+			+ KEY_TRANSPORTS_SCHEDULE + " TEXT NOT NULL " + KEY_TRANSPORTS_DESTINATION + " TEXT NOT NULL);";
 
 	private static final String CREATE_TABLE_INTEREST_POINTS = 
 			"CREATE TABLE IF NOT EXISTS " + TABLE_INTEREST_POINTS + " (" + KEY_INTEREST_POINTS_NAME_ID + " TEXT PRIMARY KEY, " 
@@ -77,7 +78,7 @@ public class NearByDBAdapter {
 
 	private static final String TABLE_PUBLIC_TRANSPORTS_INSERT = 
 			"INSERT INTO " + TABLE_PUBLIC_TRANSPORTS + " (" + KEY_TRANSPORTS_ID + "," + KEY_TRANSPORTS_COMPANY + "," 
-			+ KEY_TRANSPORTS_TYPE + "," + KEY_TRANSPORTS_PRICE + "," + KEY_TRANSPORTS_SCHEDULE + ") VALUES (?,?,?,?,?)";
+			+ KEY_TRANSPORTS_TYPE + "," + KEY_TRANSPORTS_PRICE + "," + KEY_TRANSPORTS_SCHEDULE + KEY_TRANSPORTS_DESTINATION + ") VALUES (?,?,?,?,?,?)";
 
 	private static final String TABLE_INTEREST_POINTS_INSERT = 
 			"INSERT INTO " + TABLE_INTEREST_POINTS + " (" + KEY_INTEREST_POINTS_NAME_ID + "," + KEY_INTEREST_POINTS_DESCRIPTION + "," 
@@ -198,6 +199,7 @@ public class NearByDBAdapter {
 				stmt.bindString(3, publicTransport.getType());
 				stmt.bindString(4, Float.toString(publicTransport.getPrice()));
 				stmt.bindString(5, publicTransport.getSchedule());
+				stmt.bindString(6, publicTransport.getDestination());
 
 				if(stmt.executeInsert() == -1) {
 					stmt.clearBindings();
