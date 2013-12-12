@@ -34,23 +34,23 @@ public class HomeActivity extends Activity {
 		ArrayList<PublicTransport> publicTransports = new ArrayList<PublicTransport>();
 		
 		//Add dummy restaurants
-		restaurants.add(new Restaurant("Café da Maria", "Café", 3.5f, "9:00/22:00", 0, 2.5f));
-		restaurants.add(new Restaurant("Café do Aires", "Café", 4.0f, "9:00/20:00", 0, 4.5f));
-		restaurants.add(new Restaurant("O Fixe", "Snack-Bar", 2.0f, "9:00/19:00", 0, 3.5f));
-		restaurants.add(new Restaurant("Bom Garfo", "Restaurante", 10.0f, "11:00/22:00", 0, 4f));
+		restaurants.add(new Restaurant("Café da Maria", "Café", 3.5f, "9h00/22h00", 0, 2.5f));
+		restaurants.add(new Restaurant("Café do Aires", "Café", 4.0f, "9h00/20h00", 0, 4.5f));
+		restaurants.add(new Restaurant("O Fixe", "Snack-Bar", 2.0f, "9h00/19h00", 0, 3.5f));
+		restaurants.add(new Restaurant("Bom Garfo", "Restaurante", 10.0f, "11h00/22h00", 0, 4f));
 		
 		//Add dummy interest points
-		interestPoints.add(new InterestPoint("Torre de Belém", "Uma obra histórica..", "Monumento", 12.0f, "10:00/19:00", 0, 3.5f));
-		interestPoints.add(new InterestPoint("Mosteiro da Batalha", "Outra obra histórica..", "Monumento", 12.0f, "10:00/19:00", 0, 4f));
-		interestPoints.add(new InterestPoint("Jardim Botânico", "A beleza natural", "Jardim", 5.0f, "10:00/18:00", 0, 2.5f));
-		interestPoints.add(new InterestPoint("CCB", "Um sítio a visitar", "Museu", 13.0f, "9:00/21:00", 0, 4.5f));
+		interestPoints.add(new InterestPoint("Torre de Belém", "Uma obra histórica..", "Monumento", 12.0f, "10h00/19h00", 0, 3.5f));
+		interestPoints.add(new InterestPoint("Mosteiro da Batalha", "Outra obra histórica..", "Monumento", 12.0f, "10h00/19h00", 0, 4f));
+		interestPoints.add(new InterestPoint("Jardim Botânico", "A beleza natural", "Jardim", 5.0f, "10h00/18h00", 0, 2.5f));
+		interestPoints.add(new InterestPoint("CCB", "Um sítio a visitar", "Museu", 13.0f, "9h00/21h00", 0, 4.5f));
 		
 		//Add dummy public transports
 		publicTransports.add(new PublicTransport(1, "234 Carris", "Autocarro", 1.0f, "00:01:30", "Benfica"));
 		publicTransports.add(new PublicTransport(2, "714 Carris", "Autocarro", 1.0f, "00:01:12", "Belém"));
 		publicTransports.add(new PublicTransport(3, "Transtejo", "Barco", 1.5f, "00:00:35", "Almada"));
 		publicTransports.add(new PublicTransport(4, "CP", "Comboio", 1.5f, "00:00:30", "Cascais"));
-		publicTransports.add(new PublicTransport(5, "TAP-140", "Aviso", 1.0f, "00:01:30", "Londres"));
+		publicTransports.add(new PublicTransport(5, "TAP-140", "Avião", 1.0f, "00:01:30", "Londres"));
 		
 		//Populate database
 		mDbHelper.updateRestaurants(restaurants);

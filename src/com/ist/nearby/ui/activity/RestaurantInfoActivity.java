@@ -13,12 +13,15 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class RestaurantInfoActivity extends Activity implements SensorEventListener {
 	
 	private ImageView mImage;
 	private TextView mName;
+	private RatingBar mRating;
+	private TextView mSchedule;
 	
 	private Restaurant mRestaurant;
 	private NearByDBAdapter mDbHelper;
@@ -40,9 +43,15 @@ public class RestaurantInfoActivity extends Activity implements SensorEventListe
 		
 		mName = (TextView) findViewById(R.id.tv_name);	
 		mImage = (ImageView) findViewById(R.id.navigation_arrow);
+		mRating = (RatingBar) findViewById(R.id.ratingBarView);
+		mSchedule = (TextView) findViewById(R.id.tv_schedule);
 		
 		// initialize your android device sensor capabilities
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+		
+		mName.setText(mRestaurant.getName());
+	    mRating.setRating(mRestaurant.getRating());
+	    mSchedule.setText(mRestaurant.getSchedule());
 	}
 
 	@Override
@@ -70,7 +79,6 @@ public class RestaurantInfoActivity extends Activity implements SensorEventListe
 	    super.onResume();
 	    // for the system's orientation sensor registered listeners
 	    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_GAME);
-	    mName.setText(mRestaurant.getName());
 	}
 	
 	@Override

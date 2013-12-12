@@ -35,7 +35,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
@@ -49,6 +49,15 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginTop="35px"
                 android:textSize="20sp"/>
+            
+            <ImageView
+                android:id="@+id/navigation_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/tv_name"
+                android:layout_marginTop="20px"
+                android:src="@drawable/arrow"/>
 
            <Button
                 android:id="@+id/rateBtn"
@@ -56,39 +65,30 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
-                android:textSize="14sp"
-                android:text="Classificar"/>
-           
-            <RatingBar
-                android:id="@+id/ratingBarView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@id/rateBtn"
-                android:layout_marginBottom="-15px"
-                android:isIndicator="true"
-                android:scaleX="0.8"
-                android:scaleY="0.8"
-                android:numStars="5"
-                android:rating="3.5"
-               	android:stepSize="0.5"/>
-
-            <ImageView
-                android:id="@+id/navigation_arrow"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_above="@id/ratingBarView"
-                android:src="@drawable/arrow"/>
-
-            <Button
-                android:layout_width="40px"
-                android:layout_height="40px"
-                android:layout_margin="15px"
-                android:layout_alignBottom="@+id/rateBtn"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/info_icon"/>
+                android:textSize="12sp"
+                android:text="Classificar Local"
+                android:background="@drawable/btn_background"/>
+	        <RatingBar
+	            android:id="@+id/ratingBarView"
+	            style="?android:attr/ratingBarStyleSmall"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:layout_above="@id/rateBtn"
+	            android:layout_marginBottom="10px"
+	            android:layout_marginLeft="10px"
+	            android:scaleX="1.1"
+	            android:scaleY="1.1" />
+	        <TextView
+	            android:id="@+id/tv_schedule"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentRight="true"
+	            android:layout_above="@id/rateBtn"
+	            android:layout_marginBottom="10px"
+	            android:layout_marginRight="10px"
+	            android:text="lol"/>
         </RelativeLayout>
-
 	</RelativeLayout>
 
 </RelativeLayout>
