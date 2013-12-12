@@ -62,7 +62,7 @@ public class NearByDBAdapter {
 	private static final String CREATE_TABLE_PUBLIC_TRANSPORTS = 
 			"CREATE TABLE IF NOT EXISTS " + TABLE_PUBLIC_TRANSPORTS + " (" + KEY_TRANSPORTS_ID + " INTEGER PRIMARY KEY, "
 			+ KEY_TRANSPORTS_COMPANY + " TEXT NOT NULL, " + KEY_TRANSPORTS_TYPE + " TEXT NOT NULL, " + KEY_TRANSPORTS_PRICE + " TEXT NOT NULL, "
-			+ KEY_TRANSPORTS_SCHEDULE + " TEXT NOT NULL " + KEY_TRANSPORTS_DESTINATION + " TEXT NOT NULL);";
+			+ KEY_TRANSPORTS_SCHEDULE + " TEXT NOT NULL, " + KEY_TRANSPORTS_DESTINATION + " TEXT NOT NULL);";
 
 	private static final String CREATE_TABLE_INTEREST_POINTS = 
 			"CREATE TABLE IF NOT EXISTS " + TABLE_INTEREST_POINTS + " (" + KEY_INTEREST_POINTS_NAME_ID + " TEXT PRIMARY KEY, " 
@@ -145,35 +145,6 @@ public class NearByDBAdapter {
 
 	// ************************************************************************* //	
 
-	/**
-	 * This method checks the existence of every database table
-	 * 
-	 * @return true if the tables exist, false otherwise
-	 */
-	public boolean tablesExist() {
-		
-		Cursor cursorTransports = mDb.rawQuery("SELECT COUNT(*) FROM " + TABLE_PUBLIC_TRANSPORTS, null);
-		Cursor cursorInterestPoints = mDb.rawQuery("SELECT COUNT(*) FROM " + TABLE_INTEREST_POINTS, null);
-		Cursor cursorRestaurants = mDb.rawQuery("SELECT COUNT(*) FROM " + TABLE_RESTAURANTS, null);
-		
-		if(!cursorTransports.moveToFirst() || !cursorInterestPoints.moveToFirst() || !cursorRestaurants.moveToFirst()) {
-			return false;
-		}
-		
-		int countTransports = cursorTransports.getInt(0);
-		int countInterestPoints = cursorInterestPoints.getInt(0);
-		int countRestaurants = cursorRestaurants.getInt(0);
-		
-		cursorTransports.close();
-		cursorInterestPoints.close();
-		cursorRestaurants.close();
-		
-		if(countTransports > 0 && countInterestPoints > 0 && countRestaurants > 0) {
-			return true;
-		}
-		return false;
-	}
-	
 	/**
 	 * This updates the public_transports table content
 	 *

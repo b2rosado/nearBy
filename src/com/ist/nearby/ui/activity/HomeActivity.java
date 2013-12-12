@@ -23,13 +23,9 @@ public class HomeActivity extends Activity {
 		setContentView(R.layout.activity_home);
 		
 		mDbHelper = NearByDBAdapter.getInstance(getApplicationContext());
-		
-		if(!mDbHelper.tablesExist()) {
-			populateDatabase();
-		}
+		populateDatabase();
 		mDbHelper.close();
 	}
-	
 	
 	private void populateDatabase() {
 		
