@@ -15,7 +15,7 @@ import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class InterestPointsInfoActivity extends Activity implements SensorEventListener{
+public class InterestPointsInfoActivity extends Activity implements SensorEventListener {
 	
 	private ImageView mImage;
 	private TextView mName;
@@ -38,8 +38,10 @@ public class InterestPointsInfoActivity extends Activity implements SensorEventL
 			mDbHelper.close();
 		}
 		
-		mName = (TextView) findViewById(R.id.tv_name);	
+		mName = (TextView) findViewById(R.id.tv_name);
 		mImage = (ImageView) findViewById(R.id.navigation_arrow);
+		
+		mName.setText(mInterestPoint.getName());
 		
 		// initialize your android device sensor capabilities
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -70,7 +72,6 @@ public class InterestPointsInfoActivity extends Activity implements SensorEventL
 	    super.onResume();
 	    // for the system's orientation sensor registered listeners
 	    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_GAME);
-	    mName.setText(mInterestPoint.getName());
 	}
 	
 	@Override
