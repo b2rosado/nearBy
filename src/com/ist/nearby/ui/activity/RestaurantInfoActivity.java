@@ -19,6 +19,9 @@ import com.ist.nearby.domain.Restaurant;
 import com.ist.nearby.storage.NearByDBAdapter;
 
 public class RestaurantInfoActivity extends Activity implements SensorEventListener {
+	private final int RESTAURANT_TYPE = 0;
+	private final String TYPE = "OBJECT_TYPE";
+	private final String ID = "NAME_ID";
 	
 	private ImageView mImage;
 	private TextView mName;
@@ -34,7 +37,7 @@ public class RestaurantInfoActivity extends Activity implements SensorEventListe
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_restaurant_info);
+		setContentView(R.layout.detailed_info);
 		
 		Bundle extras = getIntent().getExtras();
 		if(extras != null) {
@@ -57,7 +60,8 @@ public class RestaurantInfoActivity extends Activity implements SensorEventListe
 	
 	public void openRate(View v){
 		Intent myIntent = new Intent(this, RateActivity.class);
-		myIntent.putExtra("LOCAL_NAME_ID", mRestaurant.getName());
+		myIntent.putExtra(ID, mRestaurant.getName());
+		myIntent.putExtra(TYPE, RESTAURANT_TYPE);
 		
 		startActivity(myIntent);
 	}

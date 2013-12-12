@@ -1,35 +1,43 @@
 package com.ist.nearby.ui.activity;
 
-import com.example.nearby.R;
-import com.ist.nearby.domain.InterestPoint;
-import com.ist.nearby.storage.NearByDBAdapter;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.nearby.R;
+import com.ist.nearby.domain.InterestPoint;
+import com.ist.nearby.storage.NearByDBAdapter;
+
 public class InterestPointsInfoActivity extends Activity implements SensorEventListener {
+	private final int INTEREST_POINT_TYPE = 1;
+	private final String TYPE = "OBJECT_TYPE";
+	private final String ID = "NAME_ID";
 	
 	private ImageView mImage;
 	private TextView mName;
+	private RatingBar mRating;
+	private TextView mSchedule;
 	
 	private InterestPoint mInterestPoint;
 	private NearByDBAdapter mDbHelper;
 	
-	private float currentDegree = 0f;
+    private float currentDegree = 0f;
     private SensorManager mSensorManager;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_interest_points_info);
+		setContentView(R.layout.detailed_info);
 		
 		Bundle extras = getIntent().getExtras();
 		if(extras != null) {
@@ -38,15 +46,25 @@ public class InterestPointsInfoActivity extends Activity implements SensorEventL
 			mDbHelper.close();
 		}
 		
-		mName = (TextView) findViewById(R.id.tv_name);
+		mName = (TextView) findViewById(R.id.tv_name);	
 		mImage = (ImageView) findViewById(R.id.navigation_arrow);
-		
-		mName.setText(mInterestPoint.getName());
+		mRating = (RatingBar) findViewById(R.id.ratingBarView);
+		mSchedule = (TextView) findViewById(R.id.tv_schedule);
 		
 		// initialize your android device sensor capabilities
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+		
+		mName.setText(mInterestPoint.getName());
+	    mSchedule.setText(mInterestPoint.getSchedule());
 	}
 	
+	public void openRate(View v){
+		Intent myIntent = new Intent(this, RateActivity.class);
+		myIntent.putExtra(ID, mInterestPoint.getName());
+		myIntent.putExtra(TYPE, INTEREST_POINT_TYPE);
+		startActivity(myIntent);
+	}
+
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		// get the angle around the z-axis rotated
@@ -72,6 +90,7 @@ public class InterestPointsInfoActivity extends Activity implements SensorEventL
 	    super.onResume();
 	    // for the system's orientation sensor registered listeners
 	    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_GAME);
+	    mRating.setRating(mInterestPoint.getRating());
 	}
 	
 	@Override
@@ -85,4 +104,5 @@ public class InterestPointsInfoActivity extends Activity implements SensorEventL
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		//not in use
 	}
+
 }
