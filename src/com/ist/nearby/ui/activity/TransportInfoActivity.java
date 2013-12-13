@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 public class TransportInfoActivity extends Activity implements SensorEventListener {
 
+	private TextView mTitle;
 	private ImageView mImage;
 	private TextView mName;
 	private TextView mSchedule;
@@ -40,7 +41,8 @@ public class TransportInfoActivity extends Activity implements SensorEventListen
 			mDbHelper.close();
 		}
 		
-		mName = (TextView) findViewById(R.id.tv_name);	
+		mTitle = (TextView) findViewById(R.id.lbl_statusbar);
+		mName = (TextView) findViewById(R.id.tv_name);
 		mSchedule = (TextView) findViewById(R.id.tv_schedule);
 		mDestination = (TextView) findViewById(R.id.tv_destination);
 		mImage = (ImageView) findViewById(R.id.navigation_arrow);
@@ -48,6 +50,7 @@ public class TransportInfoActivity extends Activity implements SensorEventListen
 		// initialize your android device sensor capabilities
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
 		
+		mTitle.setText("Informação de Transportes");
 		mName.setText(mPublicTransport.getCompany());
 		mSchedule.setText(mPublicTransport.getSchedule());
 		mDestination.setText("Destino: " + mPublicTransport.getDestination());
