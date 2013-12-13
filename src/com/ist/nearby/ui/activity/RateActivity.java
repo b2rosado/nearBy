@@ -35,11 +35,11 @@ public class RateActivity extends Activity {
 			switch(getIntent().getExtras().getInt(TYPE)){
 				case RESTAURANT_TYPE:			
 					mRestaurant = mDbHelper.fetchRestaurant(getIntent().getExtras().getString(ID));
-					mText.setText("Atribua aqui a classificação\ndo ponto de interesse:\n"+mRestaurant.getName());
+					mText.setText(getResources().getString(R.string.rate_description) + mRestaurant.getName());
 					break;
 				case INTEREST_POINT_TYPE:
 					mInterestPoint = mDbHelper.fetchInterestPoint(getIntent().getExtras().getString(ID));
-					mText.setText("Atribua aqui a classificação\ndo ponto de interesse:\n"+mInterestPoint.getName());
+					mText.setText(getResources().getString(R.string.rate_description) + mInterestPoint.getName());
 					break;
 			}
 			mDbHelper.close();

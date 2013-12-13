@@ -4,10 +4,10 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:paddingBottom="7dip"
-              android:paddingLeft="5dip"
-              android:paddingRight="5dip"
-              android:paddingTop="7dip" >
+              android:paddingBottom="7dp"
+              android:paddingLeft="5dp"
+              android:paddingRight="5dp"
+              android:paddingTop="7dp" >
 
     <TextView
         android:id="@+id/tv_name"
@@ -24,7 +24,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:textColor="@android:color/black">
-    </TextView>  
+    </TextView>
+      
     <RatingBar
         android:id="@+id/ratingBarListView"
         style="?android:attr/ratingBarStyleSmall"
@@ -36,11 +37,12 @@
 
     <ImageView
         android:id="@+id/clock_icon"
-        android:layout_width="20px"
-        android:layout_height="20px"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_toLeftOf="@id/tv_info"
-        android:layout_marginRight="5px"
-        android:layout_marginTop="3px"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="3dp"
+        android:contentDescription="@string/clock1"
         android:src="@drawable/clock1" />
 
 </RelativeLayout>

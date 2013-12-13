@@ -17,7 +17,7 @@
         android:background="@android:color/white">
 
         <RelativeLayout
-            android:id="@+id/rl_statusbar"
+            android:id="@+id/lbl_statusbar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/statusbar_height"
             android:layout_alignParentTop="true"
@@ -28,7 +28,7 @@
                 android:id="@+id/tv_statusbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 android:textColor="@android:color/white"
                 android:text="@string/restaurants"/>
@@ -38,7 +38,7 @@
         	android:id="@+id/lv_content"
        	 	android:layout_width="fill_parent"
         	android:layout_height="fill_parent"
-        	android:layout_below="@+id/rl_statusbar"/>        
+        	android:layout_below="@+id/lbl_statusbar"/>        
      </RelativeLayout>
 
 </RelativeLayout>

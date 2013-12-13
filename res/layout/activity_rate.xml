@@ -28,7 +28,7 @@
                 android:id="@+id/lbl_statusbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10px"
+                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 android:textColor="@android:color/white"
                 android:text="@string/rate" />
@@ -40,15 +40,13 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/statusbar"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5px"
-            android:gravity="center_horizontal"
-            android:text="placeholder" />
+            android:layout_marginTop="5dp"
+            android:gravity="center_horizontal"/>
 
         <RatingBar
             android:id="@+id/ratingBarClicable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
             android:scaleX=".8"
             android:scaleY=".8"
@@ -61,9 +59,10 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:textSize="12sp"
-            android:text="Classificar"
+            android:text="@string/rating"
             android:background="@drawable/btn_background"
             android:onClick="rate"/>
 
     </RelativeLayout>
+    
 </RelativeLayout>

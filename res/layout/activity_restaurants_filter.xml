@@ -28,13 +28,13 @@
                 android:id="@+id/lbl_statusbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10px"
+                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 android:textColor="@android:color/white"
                 android:text="@string/restaurants_filters" />
         </RelativeLayout>
         
-        		<RadioGroup
+        <RadioGroup
 		    android:id="@+id/filter_radioGroup"
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"

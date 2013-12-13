@@ -28,7 +28,7 @@
                 android:id="@+id/lbl_statusbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10px"
+                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 android:textColor="@android:color/white"
                 android:text="@string/restaurant_info"/>
@@ -47,7 +47,7 @@
 	            android:layout_height="wrap_content"
 	            android:layout_centerHorizontal="true"
 	            android:layout_alignParentTop="true"
-	            android:layout_marginTop="35px"
+	            android:layout_marginTop="35dp"
 	            android:textSize="20sp" />
 	        
 	        <ImageView
@@ -56,7 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/tv_name"
-                android:layout_marginTop="20px"
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/arrow"
                 android:src="@drawable/arrow"/>
 	        
 	        <TextView
@@ -66,14 +67,14 @@
 	            android:layout_centerHorizontal="true"
 	            android:textSize="20sp"
 	            android:layout_below="@id/navigation_arrow"
-	            android:layout_marginTop="20px"/>
+	            android:layout_marginTop="20dp"/>
 
 	        <TextView
 	            android:id="@+id/tv_destination"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_below="@id/tv_schedule"
-	            android:layout_marginTop="20px"
+	            android:layout_marginTop="20dp"
 	            android:layout_centerHorizontal="true"
 	            android:textSize="18sp"/>
 

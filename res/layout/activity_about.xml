@@ -29,18 +29,18 @@
                 android:id="@+id/lbl_statusbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10px"
+                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 android:textColor="@android:color/white"
                 android:text="@string/about" />
         </RelativeLayout>
         <Button
             android:id="@+id/logo"
-            android:layout_width="300px"
-            android:layout_height="80px"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/statusbar"
-            android:layout_marginTop="50px"
+            android:layout_marginTop="50dp"
             android:background="@drawable/logo"
             android:onClick="logoClicked"/>
         
@@ -49,9 +49,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/logo"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="10px"
+            android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:text="Desenvolvido por:\nFilipe Relvas\nLuís Rosado\nPedro Lopes"/>
+            android:text="@string/about_developers"/>
     </RelativeLayout>
 
 </RelativeLayout>

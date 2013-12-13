@@ -28,7 +28,7 @@
                 android:id="@+id/lbl_statusbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10px"
+                android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 android:textColor="@android:color/white"
                 android:text="@string/restaurant_info"/>
@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="35px"
+                android:layout_marginTop="35dp"
                 android:textSize="20sp"/>
             
             <ImageView
@@ -56,8 +56,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/tv_name"
-                android:layout_marginTop="20px"
-                android:src="@drawable/arrow"/>
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/arrow"
+				android:src="@drawable/arrow"/>
 
            <Button
                 android:id="@+id/rateBtn"
@@ -66,7 +67,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_alignParentBottom="true"
                 android:textSize="12sp"
-                android:text="Classificar Local"
+                android:text="@string/rate"
                 android:background="@drawable/btn_background"
                 android:onClick="openRate"/>
 	        <RatingBar
@@ -76,8 +77,8 @@
 	            android:layout_height="wrap_content"
 	            android:layout_alignParentLeft="true"
 	            android:layout_above="@id/rateBtn"
-	            android:layout_marginBottom="10px"
-	            android:layout_marginLeft="10px"
+	            android:layout_marginBottom="10dp"
+	            android:layout_marginLeft="10dp"
 	            android:scaleX="1.1"
 	            android:scaleY="1.1" />
 	        <TextView
@@ -86,8 +87,8 @@
 	            android:layout_height="wrap_content"
 	            android:layout_alignParentRight="true"
 	            android:layout_above="@id/rateBtn"
-	            android:layout_marginBottom="10px"
-	            android:layout_marginRight="10px"/>
+	            android:layout_marginBottom="10dp"
+	            android:layout_marginRight="10dp"/>
         </RelativeLayout>
 	</RelativeLayout>
 
