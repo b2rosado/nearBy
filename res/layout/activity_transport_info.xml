@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/tv_name"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:contentDescription="@string/arrow"
                 android:src="@drawable/arrow"/>
 	        
@@ -65,7 +65,7 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_centerHorizontal="true"
-	            android:textSize="20sp"
+	            android:textSize="15sp"
 	            android:layout_below="@id/navigation_arrow"
 	            android:layout_marginTop="20dp"/>
 
@@ -74,7 +74,7 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_below="@id/tv_schedule"
-	            android:layout_marginTop="20dp"
+	            android:layout_marginTop="15dp"
 	            android:layout_centerHorizontal="true"
 	            android:textSize="18sp"/>
 
