@@ -61,7 +61,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/btn_help"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="@dimen/homescreen_btn_margin"
             android:text="@string/interest_points"
 			android:background="@android:color/transparent"/>
     </RelativeLayout>
