@@ -329,12 +329,12 @@ public class NearByDBAdapter {
 	 * 
 	 * @return Boolean > 0 if successful, -1 otherwise
 	 */
-	public boolean updateInterestPointRating(String _id, int rating) {
+	public boolean updateInterestPointRating(String _id, float rating) {
 		
 		ContentValues updatedValues = new ContentValues();
 		
 		updatedValues.put(KEY_INTEREST_POINTS_RATING, Float.toString(rating));
-		return mDb.update(TABLE_INTEREST_POINTS, updatedValues, KEY_INTEREST_POINTS_NAME_ID + "=" + _id, null) > 0;	
+		return mDb.update(TABLE_INTEREST_POINTS, updatedValues, KEY_INTEREST_POINTS_NAME_ID + "=" + "'"+_id+"'", null) > 0;	
 	}
 	
 	/**
@@ -437,6 +437,6 @@ public class NearByDBAdapter {
 		ContentValues updatedValues = new ContentValues();
 		
 		updatedValues.put(KEY_RESTAURANT_RATING, Float.toString(rating));
-		return mDb.update(TABLE_RESTAURANTS, updatedValues, KEY_RESTAURANT_NAME_ID + "=" + _id, null) > 0;	
+		return mDb.update(TABLE_RESTAURANTS, updatedValues, KEY_RESTAURANT_NAME_ID + "=" + "'"+_id+"'", null) > 0;	
 	}
 }

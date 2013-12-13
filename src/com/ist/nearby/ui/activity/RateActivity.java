@@ -30,10 +30,8 @@ public class RateActivity extends Activity {
 		setContentView(R.layout.activity_rate);
 		mText = (TextView) findViewById(R.id.tv_text);
 		mRate = (RatingBar) findViewById(R.id.ratingBarClicable);
-		System.out.println(1);
 		if(getIntent().getExtras() != null) {
 			mDbHelper = NearByDBAdapter.getInstance(getApplicationContext());
-			System.out.println(2);
 			switch(getIntent().getExtras().getInt(TYPE)){
 				case RESTAURANT_TYPE:			
 					mRestaurant = mDbHelper.fetchRestaurant(getIntent().getExtras().getString(ID));
@@ -44,15 +42,24 @@ public class RateActivity extends Activity {
 					mText.setText("Atribua aqui a classificação\ndo ponto de interesse:\n"+mInterestPoint.getName());
 					break;
 			}
-			System.out.println(3);
 			mDbHelper.close();
-			System.out.println(4);
 		}		
 	}
 
 	public void rate(View v){
-		mRate.getRating();
-		//actualizar BD com o voto
+		float rating;
+		mDbHelper = NearByDBAdapter.getInstance(getApplicationContext());
+		switch(getIntent().getExtras().getInt(TYPE)){
+			case RESTAURANT_TYPE:
+				rating = (mRestaurant.getRating()*mRestaurant.getNumberOfVotes()+mRate.getRating())/(mRestaurant.getNumberOfVotes()+1);
+				mDbHelper.updateRestaurantRating(mRestaurant.getName(), rating);
+				break;
+			case INTEREST_POINT_TYPE:
+				rating = (mInterestPoint.getRating()*mInterestPoint.getNumberOfVotes()+mRate.getRating())/(mInterestPoint.getNumberOfVotes()+1);
+				mDbHelper.updateInterestPointRating(mInterestPoint.getName(), rating);
+				break;
+		}
+		mDbHelper.close();
 		finish();
 	}
 
