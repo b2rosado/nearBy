@@ -91,7 +91,10 @@ public class RestaurantInfoActivity extends Activity implements SensorEventListe
 	    super.onResume();
 	    // for the system's orientation sensor registered listeners
 	    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_GAME);
-	    mRating.setRating(mRestaurant.getRating());
+	    
+	    mDbHelper = NearByDBAdapter.getInstance(getApplicationContext());
+	    mRating.setRating(mDbHelper.fetchRestaurant(mRestaurant.getName()).getRating());
+		mDbHelper.close();
 	}
 	
 	@Override

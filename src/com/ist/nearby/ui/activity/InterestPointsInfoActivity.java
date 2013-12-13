@@ -62,6 +62,7 @@ public class InterestPointsInfoActivity extends Activity implements SensorEventL
 		Intent myIntent = new Intent(this, RateActivity.class);
 		myIntent.putExtra(ID, mInterestPoint.getName());
 		myIntent.putExtra(TYPE, INTEREST_POINT_TYPE);
+		
 		startActivity(myIntent);
 	}
 
@@ -90,7 +91,10 @@ public class InterestPointsInfoActivity extends Activity implements SensorEventL
 	    super.onResume();
 	    // for the system's orientation sensor registered listeners
 	    mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION), SensorManager.SENSOR_DELAY_GAME);
-	    mRating.setRating(mInterestPoint.getRating());
+
+	    mDbHelper = NearByDBAdapter.getInstance(getApplicationContext());
+	    mRating.setRating(mDbHelper.fetchInterestPoint(mInterestPoint.getName()).getRating());
+		mDbHelper.close();
 	}
 	
 	@Override
@@ -104,5 +108,4 @@ public class InterestPointsInfoActivity extends Activity implements SensorEventL
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {
 		//not in use
 	}
-
 }

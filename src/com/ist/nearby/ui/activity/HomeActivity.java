@@ -35,7 +35,7 @@ public class HomeActivity extends Activity {
 		
 		//Add dummy restaurants
 		restaurants.add(new Restaurant("Café da Maria", "Café", 3.5f, "9h00/22h00", 0, 2.5f));
-		restaurants.add(new Restaurant("Café do Aires", "Café", 4.0f, "9h00/20h00", 0, 4.5f));
+		restaurants.add(new Restaurant("Café do Aires", "Café", 4.0f, "9h00/20h00", 0, 0f));
 		restaurants.add(new Restaurant("O Fixe", "Snack-Bar", 2.0f, "9h00/19h00", 0, 3.5f));
 		restaurants.add(new Restaurant("Bom Garfo", "Restaurante", 10.0f, "11h00/22h00", 0, 4f));
 		

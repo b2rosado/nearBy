@@ -56,7 +56,7 @@ public class RateActivity extends Activity {
 				break;
 			case INTEREST_POINT_TYPE:
 				rating = (mInterestPoint.getRating() * mInterestPoint.getNumberOfVotes() + mRate.getRating())/(mInterestPoint.getNumberOfVotes() + 1);
-				mDbHelper.updateInterestPointRating(mInterestPoint.getName(), rating, mRestaurant.getNumberOfVotes() + 1);
+				mDbHelper.updateInterestPointRating(mInterestPoint.getName(), rating, mInterestPoint.getNumberOfVotes() + 1);
 				break;
 		}
 		mDbHelper.close();
