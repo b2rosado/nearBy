@@ -329,12 +329,14 @@ public class NearByDBAdapter {
 	 * 
 	 * @return Boolean > 0 if successful, -1 otherwise
 	 */
-	public boolean updateInterestPointRating(String _id, float rating) {
+	public boolean updateInterestPointRating(String _id, float rating, int numVotos) {
 		
 		ContentValues updatedValues = new ContentValues();
 		
 		updatedValues.put(KEY_INTEREST_POINTS_RATING, Float.toString(rating));
-		return mDb.update(TABLE_INTEREST_POINTS, updatedValues, KEY_INTEREST_POINTS_NAME_ID + "=" + "'"+_id+"'", null) > 0;	
+		updatedValues.put(KEY_RESTAURANT_VOTES, numVotos);
+		
+		return mDb.update(TABLE_INTEREST_POINTS, updatedValues, KEY_INTEREST_POINTS_NAME_ID + "=?", new String[]{"" + _id}) > 0;
 	}
 	
 	/**
@@ -432,11 +434,13 @@ public class NearByDBAdapter {
 	 * 
 	 * @return Boolean > 0 if successful, -1 otherwise
 	 */
-	public boolean updateRestaurantRating(String _id, float rating) {
+	public boolean updateRestaurantRating(String _id, float rating, int numVotos) {
 		
 		ContentValues updatedValues = new ContentValues();
 		
 		updatedValues.put(KEY_RESTAURANT_RATING, Float.toString(rating));
-		return mDb.update(TABLE_RESTAURANTS, updatedValues, KEY_RESTAURANT_NAME_ID + "=" + "'"+_id+"'", null) > 0;	
+		updatedValues.put(KEY_RESTAURANT_VOTES, numVotos);
+		
+		return mDb.update(TABLE_RESTAURANTS, updatedValues, KEY_RESTAURANT_NAME_ID + "=?", new String[]{"" + _id}) > 0;	
 	}
 }

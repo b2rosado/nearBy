@@ -51,12 +51,12 @@ public class RateActivity extends Activity {
 		mDbHelper = NearByDBAdapter.getInstance(getApplicationContext());
 		switch(getIntent().getExtras().getInt(TYPE)){
 			case RESTAURANT_TYPE:
-				rating = (mRestaurant.getRating()*mRestaurant.getNumberOfVotes()+mRate.getRating())/(mRestaurant.getNumberOfVotes()+1);
-				mDbHelper.updateRestaurantRating(mRestaurant.getName(), rating);
+				rating = (mRestaurant.getRating() * mRestaurant.getNumberOfVotes() + mRate.getRating())/(mRestaurant.getNumberOfVotes() + 1);
+				mDbHelper.updateRestaurantRating(mRestaurant.getName(), rating, mRestaurant.getNumberOfVotes() + 1);
 				break;
 			case INTEREST_POINT_TYPE:
-				rating = (mInterestPoint.getRating()*mInterestPoint.getNumberOfVotes()+mRate.getRating())/(mInterestPoint.getNumberOfVotes()+1);
-				mDbHelper.updateInterestPointRating(mInterestPoint.getName(), rating);
+				rating = (mInterestPoint.getRating() * mInterestPoint.getNumberOfVotes() + mRate.getRating())/(mInterestPoint.getNumberOfVotes() + 1);
+				mDbHelper.updateInterestPointRating(mInterestPoint.getName(), rating, mRestaurant.getNumberOfVotes() + 1);
 				break;
 		}
 		mDbHelper.close();
