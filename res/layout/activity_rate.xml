@@ -59,7 +59,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:textSize="12sp"
-            android:text="@string/rating"
+            android:text="@string/rate"
             android:background="@drawable/btn_background"
             android:onClick="rate"/>
 
