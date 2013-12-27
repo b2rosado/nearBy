@@ -36,33 +36,34 @@
         </RelativeLayout>
         
         <Button
-            android:id="@+id/btn_filters"
+            android:id="@+id/btn_transports"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/statusbar"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:text="@string/transports"
-            android:background="@drawable/btn_separator"/>
+            android:background="@drawable/btn_separator"
+            android:onClick="openTransportsFilters"/>
         
         <Button
-            android:id="@+id/btn_help"
+            android:id="@+id/btn_restaurants"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/btn_filters"
+            android:layout_below="@id/btn_transports"
             android:text="@string/restaurants"
             android:background="@drawable/btn_separator"
-            android:onClick="openRestaurantsFilter"/>
+            android:onClick="openRestaurantsFilters"/>
         
         <Button
-            android:id="@+id/btn_"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/btn_help"
+            android:layout_below="@id/btn_restaurants"
             android:layout_centerHorizontal="true"
             android:text="@string/interest_points"
-			android:background="@android:color/transparent"/>
+			android:background="@android:color/transparent"
+			android:onClick="openInterestPointsFilters"/>
     </RelativeLayout>
     
     

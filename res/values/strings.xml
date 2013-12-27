@@ -19,7 +19,9 @@
     <string name="about">Sobre</string>
     <string name="title_activity_filters">FiltersActivity</string>
     <string name="title_activity_restaurants_filter">RestaurantsFilterActivity</string>
+    <string name="transports_filters">Filtros de Transportes</string>
     <string name="restaurants_filters">Filtros de Restauração</string>
+    <string name="interest_points_filters">Filtros de Pontos de Interesse</string>
     <string name="alwaysAlert">Avisar Sempre</string>
     <string name="onlyPromotions">Apenas Promoções</string>
     <string name="neverAlert">Nunca Avisar</string>

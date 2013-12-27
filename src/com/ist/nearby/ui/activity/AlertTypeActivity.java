@@ -14,7 +14,7 @@ public class AlertTypeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_alert_type);
+        setContentView(R.layout.alert_type);
         RadioGroup rg = (RadioGroup) findViewById(R.id.alertRadioGroup);
         String alert_type = getIntent().getStringExtra("alert").split("\n")[1];
         

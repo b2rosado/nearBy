@@ -47,7 +47,7 @@
             android:label="@string/title_activity_filters" >
         </activity>
         <activity
-            android:name="com.ist.nearby.ui.activity.RestaurantsFilterActivity"
+            android:name="com.ist.nearby.ui.activity.FiltersTypeActivity"
             android:label="@string/title_activity_restaurants_filter" >
         </activity>
         <activity

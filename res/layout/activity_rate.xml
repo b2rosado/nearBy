@@ -43,17 +43,8 @@
             android:layout_marginTop="5dp"
             android:gravity="center_horizontal"/>
 
-        <RatingBar
-            android:id="@+id/ratingBarClicable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:scaleX=".8"
-            android:scaleY=".8"
-            android:numStars="5"
-            android:stepSize=".5"/>
-
         <Button
+            android:id="@+id/btn_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -62,6 +53,17 @@
             android:text="@string/rate"
             android:background="@drawable/btn_background"
             android:onClick="rate"/>
+        
+        <RatingBar
+            android:id="@+id/ratingBarClicable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btn_rate"
+            android:layout_marginBottom="15dp"
+            android:scaleX=".8"
+            android:scaleY=".8"
+            android:numStars="5"
+            android:stepSize=".5"/>
 
     </RelativeLayout>
     

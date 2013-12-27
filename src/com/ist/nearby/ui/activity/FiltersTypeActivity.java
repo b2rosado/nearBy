@@ -7,8 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
-public class RestaurantsFilterActivity extends Activity {
+public class FiltersTypeActivity extends Activity {
+	private final String FILTER_TYPE = "FILTER_TYPE";
+	private final String TRANSPORTS = "TRANSPORTS";
+	private final String RESTAURANTS = "RESTAURANTS";
+	private final String INTEREST_POINTS = "INTEREST POINTS";
 	private static int STATIC_INTEGER_VALUE = 0;
 	private RadioButton alwaysAlert_btn;
 	private RadioButton onlyPromotions_btn;
@@ -19,7 +24,18 @@ public class RestaurantsFilterActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_restaurants_filter);
+		setContentView(R.layout.filters_type);
+		
+		TextView label = (TextView) findViewById(R.id.lbl_statusbar);
+		
+		if(getIntent().getExtras().get(FILTER_TYPE).equals(TRANSPORTS))
+			label.setText(R.string.transports_filters);
+		else if(getIntent().getExtras().get(FILTER_TYPE).equals(RESTAURANTS))
+			label.setText(R.string.restaurants_filters);
+		else if(getIntent().getExtras().get(FILTER_TYPE).equals(INTEREST_POINTS))
+			label.setText(R.string.interest_points_filters);
+		
+		
 		alwaysAlert_btn = (RadioButton) findViewById(R.id.radio_alwaysAlert);
 		onlyPromotions_btn = (RadioButton) findViewById(R.id.radio_onlyPromotions);
 		
