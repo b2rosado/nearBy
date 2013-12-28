@@ -42,7 +42,7 @@
             android:layout_below="@id/statusbar"
             android:layout_marginTop="@dimen/homescreen_btn_margin"
             android:layout_marginLeft="@dimen/homescreen_btn_margin"
-            android:background="@drawable/transports"
+            android:background="@drawable/transports2"
             android:onClick="openTransports"/>
 
         <Button
@@ -53,7 +53,7 @@
             android:layout_below="@id/statusbar"
             android:layout_marginTop="@dimen/homescreen_btn_margin"
             android:layout_marginRight="@dimen/homescreen_btn_margin"
-            android:background="@drawable/restaurants"
+            android:background="@drawable/restaurants2"
             android:onClick="openRestaurants"/>
         
         <Button
@@ -64,7 +64,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="@dimen/homescreen_btn_margin"
             android:layout_marginLeft="@dimen/homescreen_btn_margin"
-            android:background="@drawable/interestpoints"
+            android:background="@drawable/interestpoints2"
             android:onClick="openInterestPoints"/>
         
         <Button
@@ -75,7 +75,7 @@
 			android:layout_alignParentBottom="true"
 			android:layout_marginBottom="@dimen/homescreen_btn_margin"
             android:layout_marginRight="@dimen/homescreen_btn_margin"
-            android:background="@drawable/settings"
+            android:background="@drawable/settings2"
             android:onClick="openSettings"/>
 
     </RelativeLayout>
