@@ -74,7 +74,7 @@ public class ItemAdapter extends BaseAdapter {
 			
 			rating.setVisibility(View.GONE);
 			
-			name.setText(publicTransport.getCompany());
+			name.setText(checkString(publicTransport.getCompany()));
 			timeLeft.setText(publicTransport.getSchedule());
 			
 		} else if (item.isInterestPoint()) {
@@ -89,7 +89,7 @@ public class ItemAdapter extends BaseAdapter {
 			final RatingBar rating =(RatingBar) convertView.findViewById(R.id.ratingBarListView);
 			final ImageView clock = (ImageView) convertView.findViewById(R.id.clock_icon);
 			
-			name.setText(interestPoint.getName());
+			name.setText(checkString(interestPoint.getName()));
 			schedule.setText(interestPoint.getSchedule());
 			rating.setRating(interestPoint.getRating());
 			clock.setVisibility(View.GONE);
@@ -106,12 +106,21 @@ public class ItemAdapter extends BaseAdapter {
 			final RatingBar rating =(RatingBar) convertView.findViewById(R.id.ratingBarListView);
 			final ImageView clock = (ImageView) convertView.findViewById(R.id.clock_icon);
 			
-			name.setText(restaurant.getName());
+			name.setText(checkString(restaurant.getName()));
 			schedule.setText(restaurant.getSchedule());
 			rating.setRating(restaurant.getRating());
 			clock.setVisibility(View.GONE);
 		}
 		
 		return convertView;
+	}
+	
+	public String checkString(String input) {
+		
+		if(input.length() > 14) {
+			return input.substring(0, 13) + "...";
+		} else {
+			return input;
+		}	
 	}
 }
