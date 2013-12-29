@@ -29,7 +29,7 @@
                 android:id="@+id/lbl_statusbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/homescreen_btn_margin"
                 android:layout_centerVertical="true"
                 android:textColor="@android:color/white"
                 android:text="@string/filters" />
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/statusbar"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="4mm"
             android:text="@string/transports"
             android:background="@drawable/btn_separator"
             android:onClick="openTransportsFilters"/>

@@ -28,7 +28,7 @@
                 android:id="@+id/lbl_statusbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/homescreen_btn_margin"
                 android:layout_centerVertical="true"
                 android:textColor="@android:color/white"
                 android:text="@string/alert_type" />

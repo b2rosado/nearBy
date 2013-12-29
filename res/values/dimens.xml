@@ -3,10 +3,10 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <dimen name="screen_size">320px</dimen>
-    <dimen name="homescreen_btn_size">120px</dimen>
-    <dimen name="homescreen_btn_margin">10px</dimen>
-    <dimen name="double_margin">20px</dimen>
-    <dimen name="statusbar_height">30px</dimen>
+    <dimen name="screen_size">37mm</dimen>
+    <dimen name="homescreen_btn_size">15mm</dimen>
+    <dimen name="homescreen_btn_margin">1mm</dimen>
+    <dimen name="double_margin">2mm</dimen>
+    <dimen name="statusbar_height">3.5mm</dimen>
 
 </resources>

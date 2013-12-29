@@ -28,7 +28,7 @@
                 android:id="@+id/lbl_statusbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/homescreen_btn_margin"
                 android:layout_centerVertical="true"
                 android:textColor="@android:color/white"
                 android:text="@string/rate" />
@@ -40,7 +40,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/statusbar"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="@dimen/homescreen_btn_margin"
             android:gravity="center_horizontal"/>
 
         <Button
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/btn_rate"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="3mm"
             android:scaleX=".8"
             android:scaleY=".8"
             android:numStars="5"

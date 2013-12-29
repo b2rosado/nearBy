@@ -4,10 +4,10 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:paddingBottom="7dp"
-              android:paddingLeft="5dp"
-              android:paddingRight="5dp"
-              android:paddingTop="7dp" >
+              android:paddingBottom=".7mm"
+              android:paddingLeft=".5mm"
+              android:paddingRight=".5mm"
+              android:paddingTop=".7mm" >
 
     <TextView
         android:id="@+id/tv_name"
@@ -37,11 +37,11 @@
 
     <ImageView
         android:id="@+id/clock_icon"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="2mm"
+        android:layout_height="2mm"
         android:layout_toLeftOf="@id/tv_info"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginRight="1.4mm"
+        android:layout_marginTop="0.75mm"
         android:contentDescription="@string/clock1"
         android:src="@drawable/clock1" />
 

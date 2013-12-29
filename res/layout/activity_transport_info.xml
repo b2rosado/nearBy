@@ -28,7 +28,7 @@
                 android:id="@+id/lbl_statusbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="@dimen/homescreen_btn_margin"
                 android:layout_centerVertical="true"
                 android:textColor="@android:color/white"
                 android:text="@string/restaurant_info"/>
@@ -47,7 +47,7 @@
 	            android:layout_height="wrap_content"
 	            android:layout_centerHorizontal="true"
 	            android:layout_alignParentTop="true"
-	            android:layout_marginTop="25dp"
+	            android:layout_marginTop="4mm"
 	            android:textSize="20sp" />
 	        
 	        <ImageView
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/tv_name"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="2mm"
                 android:contentDescription="@string/arrow"
                 android:src="@drawable/arrow"/>
 	        
@@ -67,7 +67,7 @@
 	            android:layout_centerHorizontal="true"
 	            android:textSize="14sp"
 	            android:layout_below="@id/navigation_arrow"
-	            android:layout_marginTop="10dp"
+	            android:layout_marginTop="2mm"
 	            android:text="95 m"/>
 	        
 	        <TextView
@@ -77,14 +77,14 @@
 	            android:layout_centerHorizontal="true"
 	            android:textSize="18sp"
 	            android:layout_below="@id/tv_distance"
-	            android:layout_marginTop="5dp"/>
+	            android:layout_marginTop="0.5mm"/>
 
 	        <TextView
 	            android:id="@+id/tv_destination"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_below="@id/tv_schedule"
-	            android:layout_marginTop="5dp"
+	            android:layout_marginTop="0.5mm"
 	            android:layout_centerHorizontal="true"
 	            android:textSize="18sp"/>
 
